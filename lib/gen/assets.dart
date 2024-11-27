@@ -88,6 +88,14 @@ class $AssetsImagesGen {
   AssetGenImage get icAvatarMusic =>
       const AssetGenImage('assets/images/ic_avatar_music.png');
 
+  /// File path: assets/images/ic_emotion.svg
+  SvgGenImage get icEmotion =>
+      const SvgGenImage('assets/images/ic_emotion.svg');
+
+  /// File path: assets/images/ic_tag.svg
+  SvgGenImage get icTag =>
+      const SvgGenImage('assets/images/ic_tag.svg');
+
   List<dynamic> get values => [
     icAccountCheck,
     icAccountUnCheck,
@@ -110,6 +118,8 @@ class $AssetsImagesGen {
     video2,
     icDisc,
     icAvatarMusic,
+    icEmotion,
+    icTag
   ];
 }
 

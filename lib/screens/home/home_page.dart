@@ -59,6 +59,7 @@ class HomePage extends StatelessWidget {
               Get.bottomSheet(
                   BottomSheetComment(
                     comments: controller.comments,
+                    closeBottomComment: () => Get.back(),
                   ),
                   isScrollControlled: true,
                   backgroundColor: Colors.white,
