@@ -36,6 +36,10 @@ class $AssetsImagesGen {
   SvgGenImage get icInboxUnCheck =>
       const SvgGenImage('assets/images/ic_inbox_uncheck.svg');
 
+  /// File path: assets/images/ic_inbox_thin.svg
+  SvgGenImage get icInboxThin =>
+      const SvgGenImage('assets/images/ic_inbox_thin.svg');
+
   /// File path: assets/images/ic_search_check.svg
   SvgGenImage get icSearchCheck =>
       const SvgGenImage('assets/images/ic_search_check.svg');
@@ -96,6 +100,14 @@ class $AssetsImagesGen {
   SvgGenImage get icTag =>
       const SvgGenImage('assets/images/ic_tag.svg');
 
+  /// File path: assets/images/ic_send.svg
+  SvgGenImage get icSend =>
+      const SvgGenImage('assets/images/ic_send.svg');
+
+  /// File path: assets/images/ic_triangle.svg
+  SvgGenImage get icTriangle =>
+      const SvgGenImage('assets/images/ic_triangle.svg');
+
   List<dynamic> get values => [
     icAccountCheck,
     icAccountUnCheck,
@@ -105,6 +117,7 @@ class $AssetsImagesGen {
     icHomeUnCheck,
     icInboxCheck,
     icInboxUnCheck,
+    icInboxThin,
     icSearchCheck,
     icSearchUnCheck,
     avatar1,
@@ -119,7 +132,9 @@ class $AssetsImagesGen {
     icDisc,
     icAvatarMusic,
     icEmotion,
-    icTag
+    icTag,
+    icSend,
+    icTriangle
   ];
 }
 
