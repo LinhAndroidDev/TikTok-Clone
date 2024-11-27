@@ -44,6 +44,50 @@ class $AssetsImagesGen {
   SvgGenImage get icSearchUnCheck =>
       const SvgGenImage('assets/images/ic_search_uncheck.svg');
 
+  /// File path: assets/images/avatar1.png
+  AssetGenImage get avatar1 =>
+      const AssetGenImage('assets/images/avatar1.png');
+
+  /// File path: assets/images/avatar2.png
+  AssetGenImage get avatar2 =>
+      const AssetGenImage('assets/images/avatar2.png');
+
+  /// File path: assets/images/ic_favourite.svg
+  SvgGenImage get icFavourite =>
+      const SvgGenImage('assets/images/ic_favourite.svg');
+
+  /// File path: assets/images/ic_favourite_stroke.svg
+  SvgGenImage get icFavouriteStroke =>
+      const SvgGenImage('assets/images/ic_favourite_stroke.svg');
+
+  /// File path: assets/images/ic_message.svg
+  SvgGenImage get icMessage =>
+      const SvgGenImage('assets/images/ic_message.svg');
+
+  /// File path: assets/images/ic_music.svg
+  SvgGenImage get icMusic =>
+      const SvgGenImage('assets/images/ic_music.svg');
+
+  /// File path: assets/images/ic_share.svg
+  SvgGenImage get icShare =>
+      const SvgGenImage('assets/images/ic_share.svg');
+
+  /// File path: assets/images/video1.png
+  AssetGenImage get video1 =>
+      const AssetGenImage('assets/images/video1.png');
+
+  /// File path: assets/images/video2.png
+  AssetGenImage get video2 =>
+      const AssetGenImage('assets/images/video2.png');
+
+  /// File path: assets/images/ic_disc.svg
+  SvgGenImage get icDisc =>
+      const SvgGenImage('assets/images/ic_disc.svg');
+
+  /// File path: assets/images/ic_avatar_music.png
+  AssetGenImage get icAvatarMusic =>
+      const AssetGenImage('assets/images/ic_avatar_music.png');
+
   List<dynamic> get values => [
     icAccountCheck,
     icAccountUnCheck,
@@ -55,6 +99,17 @@ class $AssetsImagesGen {
     icInboxUnCheck,
     icSearchCheck,
     icSearchUnCheck,
+    avatar1,
+    avatar2,
+    icFavourite,
+    icFavouriteStroke,
+    icMessage,
+    icMusic,
+    icShare,
+    video1,
+    video2,
+    icDisc,
+    icAvatarMusic,
   ];
 }
 

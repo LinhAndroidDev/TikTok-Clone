@@ -24,11 +24,19 @@ class BottomNavigation extends StatelessWidget {
         BottomNavigationBar(
           elevation: 0,
           type: BottomNavigationBarType.fixed,
-          backgroundColor: (currentTab == BottomNavigationItem.home) ? ColorName.black : ColorName.white,
+          backgroundColor: (currentTab == BottomNavigationItem.home)
+              ? ColorName.black
+              : ColorName.white,
           items: BottomNavigationItem.values.map(_buildItem).toList(),
-          selectedItemColor: (currentTab == BottomNavigationItem.home) ? ColorName.white : ColorName.black, // Xóa màu mặc định
+          selectedItemColor: (currentTab == BottomNavigationItem.home)
+              ? ColorName.white
+              : ColorName.black,
+          // Xóa màu mặc định
           unselectedItemColor: ColorName.greyLight,
-          selectedLabelStyle: textSmallBold.copyWith(color: (currentTab == BottomNavigationItem.home) ? ColorName.white : ColorName.black),
+          selectedLabelStyle: textSmallBold.copyWith(
+              color: (currentTab == BottomNavigationItem.home)
+                  ? ColorName.white
+                  : ColorName.black),
           unselectedLabelStyle: textSmall.copyWith(color: ColorName.greyLight),
           currentIndex: currentTab.index,
           onTap: (index) => onSelectTab(

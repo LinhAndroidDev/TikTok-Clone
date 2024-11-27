@@ -5,8 +5,10 @@ import '../../../gen/assets.dart';
 enum BottomNavigationItem { home, discover, creative, inbox, profile }
 
 extension BottomNavigationExtension on BottomNavigationItem {
-  Widget tabItem({required bool isSelected, required double width, required bool homeSelected}) {
-
+  Widget tabItem(
+      {required bool isSelected,
+      required double width,
+      required bool homeSelected}) {
     switch (this) {
       case BottomNavigationItem.home:
         return (isSelected)
