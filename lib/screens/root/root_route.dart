@@ -10,7 +10,7 @@ class RootRoute extends AppRouteable {
     return GetPageRoute(
       settings: settings,
       binding: RootBinding(),
-      page: () => const RootPage(),
+      page: () => RootPage(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 300),
     );
