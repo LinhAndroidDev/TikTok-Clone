@@ -152,6 +152,31 @@ class $AssetsImagesGen {
   SvgGenImage get icSaveVideo =>
       const SvgGenImage('assets/images/ic_save_video.svg');
 
+  /// File path: assets/images/ic_add_account.svg
+  SvgGenImage get icAddAccount =>
+      const SvgGenImage('assets/images/ic_add_account.svg');
+
+  /// File path: assets/images/ic_menu_circle.svg
+  SvgGenImage get icMenuCircle =>
+      const SvgGenImage('assets/images/ic_menu_circle.svg');
+
+  /// File path: assets/images/avatar_profile.png
+  AssetGenImage get avatarProfile =>
+      const AssetGenImage('assets/images/avatar_profile.png');
+
+  /// File path: assets/images/ic_favourite_saved.svg
+  SvgGenImage get icFavouriteSaved =>
+      const SvgGenImage('assets/images/ic_favourite_saved.svg');
+
+  /// File path: assets/images/ic_menu_all.svg
+  SvgGenImage get icMenuAll =>
+      const SvgGenImage('assets/images/ic_menu_all.svg');
+
+  /// File path: assets/images/ic_save_thick.svg
+  SvgGenImage get icSaveThick =>
+      const SvgGenImage('assets/images/ic_save_thick.svg');
+
+
   List<dynamic> get values => [
     icAccountCheck,
     icAccountUnCheck,
@@ -190,6 +215,12 @@ class $AssetsImagesGen {
     icReact,
     icReport,
     icSaveVideo,
+    icAddAccount,
+    icMenuCircle,
+    avatarProfile,
+    icFavouriteSaved,
+    icMenuAll,
+    icSaveThick,
   ];
 }
 

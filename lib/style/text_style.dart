@@ -65,3 +65,9 @@ TextStyle text18Semibold = const TextStyle(
   fontWeight: FontWeight.w500,
   color: Colors.white,
 );
+
+TextStyle text18bold = const TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+  color: Colors.black,
+);

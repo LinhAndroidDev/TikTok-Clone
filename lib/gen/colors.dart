@@ -29,4 +29,7 @@ class ColorName {
 
   /// Color: #FF0000
   static const Color pinkDark = Color(0xFFEA4359);
+
+  /// Color: #DADBDB
+  static const Color colorDivider = Color(0xFFDADBDB);
 }

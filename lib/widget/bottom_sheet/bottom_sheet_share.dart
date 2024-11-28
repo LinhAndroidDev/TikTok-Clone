@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/gen/colors.dart';
+import 'package:tiktok_clone/widget/divider/divider.dart';
 
 import '../../gen/assets.dart';
 import '../../style/text_style.dart';
@@ -38,7 +39,9 @@ class BottomSheetShare extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          const Divider(color: Color(0xFFDADBDB), thickness: 0.4, height: 0.4),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 15),
+              child: const CustomDivider()),
           const SizedBox(
             height: 15,
           ),
@@ -52,6 +55,7 @@ class BottomSheetShare extends StatelessWidget {
     );
   }
 
+  /// Build feature top
   Widget _buildFeatureTop() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -111,6 +115,7 @@ class BottomSheetShare extends StatelessWidget {
     );
   }
 
+  /// Item feature top
   Widget _itemFeatureTop({required SvgGenImage icon, required String title}) {
     return SizedBox(
       width: 63,
@@ -127,6 +132,7 @@ class BottomSheetShare extends StatelessWidget {
     );
   }
 
+  /// Build feature bottom
   Widget _buildFeatureBottom() {
     return SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -167,6 +173,7 @@ class BottomSheetShare extends StatelessWidget {
         ));
   }
 
+  /// Item feature bottom
   Widget _itemFeatureBottom(
       {required SvgGenImage icon, required String title}) {
     return Column(
@@ -192,6 +199,7 @@ class BottomSheetShare extends StatelessWidget {
     );
   }
 
+  /// Build footer
   Widget _buildFooter() {
     return Container(
       color: ColorName.white,

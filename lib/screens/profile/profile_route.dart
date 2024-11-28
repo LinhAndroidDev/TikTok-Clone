@@ -11,7 +11,7 @@ class ProfileRoute extends AppRouteable {
     return GetPageRoute(
       settings: settings,
       binding: ProfileBinding(),
-      page: () => const ProfilePage(),
+      page: () => ProfilePage(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 300),
     );

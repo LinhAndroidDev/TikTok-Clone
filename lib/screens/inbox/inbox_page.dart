@@ -16,7 +16,7 @@ class InboxPage extends StatelessWidget {
         height: double.infinity,
         child: Column(
           children: [
-            const SizedBox(height: 50,),
+            const SizedBox(height: 60,),
             _buildHeader(),
             Expanded(
               child: Column(
