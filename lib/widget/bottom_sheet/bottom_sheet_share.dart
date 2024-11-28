@@ -29,7 +29,7 @@ class BottomSheetShare extends StatelessWidget {
           ),
           Text(
             'Share to',
-            style: textNormalBold,
+            style: textNormalSemibold.copyWith(color: ColorName.black),
           ),
           const SizedBox(
             height: 15,
