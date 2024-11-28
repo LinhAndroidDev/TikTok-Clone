@@ -6,6 +6,8 @@ import 'package:tiktok_clone/screens/home/widgets/item_page_video.dart';
 import 'package:tiktok_clone/style/text_style.dart';
 import 'package:tiktok_clone/widget/bottom_sheet/bottom_sheet_comment.dart';
 
+import '../../widget/bottom_sheet/bottom_sheet_share.dart';
+
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
@@ -62,7 +64,12 @@ class HomePage extends StatelessWidget {
                     closeBottomComment: () => Get.back(),
                   ),
                   isScrollControlled: true,
-                  backgroundColor: Colors.white,
+              );
+            },
+            onTapShare: () {
+              Get.bottomSheet(
+                BottomSheetShare(onTapCancel: () => Get.back()),
+                isScrollControlled: true,
               );
             },
           );

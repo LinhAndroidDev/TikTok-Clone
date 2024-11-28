@@ -16,7 +16,7 @@ class BottomSheetComment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.8,
+      height: MediaQuery.of(context).size.height * 0.7,
       decoration: const BoxDecoration(
         color: ColorName.white,
         borderRadius: BorderRadius.only(

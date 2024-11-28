@@ -108,6 +108,50 @@ class $AssetsImagesGen {
   SvgGenImage get icTriangle =>
       const SvgGenImage('assets/images/ic_triangle.svg');
 
+  /// File path: assets/images/ic_instagram.svg
+  SvgGenImage get icInstagram =>
+      const SvgGenImage('assets/images/ic_instagram.svg');
+
+  /// File path: assets/images/ic_messenger_logo.svg
+  SvgGenImage get icMessengerLogo =>
+      const SvgGenImage('assets/images/ic_messenger_logo.svg');
+
+  /// File path: assets/images/ic_send_white.svg
+  SvgGenImage get icSendWhite =>
+      const SvgGenImage('assets/images/ic_send_white.svg');
+
+  /// File path: assets/images/ic_sms.svg
+  SvgGenImage get icSms =>
+      const SvgGenImage('assets/images/ic_sms.svg');
+
+  /// File path: assets/images/ic_whats_app.svg
+  SvgGenImage get icWhatsApp =>
+      const SvgGenImage('assets/images/ic_whats_app.svg');
+
+  /// File path: assets/images/ic_add_favourite.svg
+  SvgGenImage get icAddFavourite =>
+      const SvgGenImage('assets/images/ic_add_favourite.svg');
+
+  /// File path: assets/images/ic_duet.svg
+  SvgGenImage get icDuet =>
+      const SvgGenImage('assets/images/ic_duet.svg');
+
+  /// File path: assets/images/ic_not_interested.svg
+  SvgGenImage get icNotInterested =>
+      const SvgGenImage('assets/images/ic_not_interested.svg');
+
+  /// File path: assets/images/ic_react.svg
+  SvgGenImage get icReact =>
+      const SvgGenImage('assets/images/ic_react.svg');
+
+  /// File path: assets/images/ic_report.svg
+  SvgGenImage get icReport =>
+      const SvgGenImage('assets/images/ic_report.svg');
+
+  /// File path: assets/images/ic_save_video.svg
+  SvgGenImage get icSaveVideo =>
+      const SvgGenImage('assets/images/ic_save_video.svg');
+
   List<dynamic> get values => [
     icAccountCheck,
     icAccountUnCheck,
@@ -134,7 +178,18 @@ class $AssetsImagesGen {
     icEmotion,
     icTag,
     icSend,
-    icTriangle
+    icTriangle,
+    icInstagram,
+    icMessengerLogo,
+    icSendWhite,
+    icSms,
+    icWhatsApp,
+    icAddFavourite,
+    icDuet,
+    icNotInterested,
+    icReact,
+    icReport,
+    icSaveVideo,
   ];
 }
 

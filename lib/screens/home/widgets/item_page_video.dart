@@ -11,11 +11,13 @@ class ItemPageVideo extends StatelessWidget {
       {super.key,
       required this.videoModel,
       required this.onTapFavourite,
-      required this.onTapComment});
+      required this.onTapComment,
+      required this.onTapShare});
 
   final VideoModel videoModel;
   final VoidCallback onTapFavourite ;
   final VoidCallback onTapComment;
+  final VoidCallback onTapShare;
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +111,9 @@ class ItemPageVideo extends StatelessWidget {
             const SizedBox(height: 20,),
             Column(
               children: [
-                Assets.images.icShare.svg(width: 35, height: 35),
+                InkWell(
+                  onTap: () => onTapShare.call(),
+                    child: Assets.images.icShare.svg(width: 35, height: 35)),
                 Text('Share', style: text13Semibold,)
               ],
             ),
