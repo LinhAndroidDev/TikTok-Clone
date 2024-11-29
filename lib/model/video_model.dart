@@ -10,6 +10,7 @@ class VideoModel {
   final AssetGenImage? avatarAuthorMusic;
   final int likeCount;
   final int commentCount;
+  bool isLiked;
 
   VideoModel(
       {required this.video,
@@ -20,5 +21,7 @@ class VideoModel {
       required this.musicAttached,
       this.avatarAuthorMusic,
       required this.likeCount,
-      required this.commentCount});
+      required this.commentCount,
+      this.isLiked = false
+      });
 }

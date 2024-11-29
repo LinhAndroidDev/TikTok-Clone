@@ -7,10 +7,9 @@ import '../../gen/assets.dart';
 
 class HomeController extends GetxController with GetSingleTickerProviderStateMixin {
   late TabController tabController;
-  final videos = [
-    VideoModel(video: Assets.images.video1, avatar: Assets.images.avatar1, nameAuthor: 'karennne', description: '', attached: ['avicii', 'wflove'], musicAttached: 'Avicii - Waiting For Love (ft.', likeCount: 4445, commentCount: 64),
-    VideoModel(video: Assets.images.video2, avatar: Assets.images.avatar2, nameAuthor: 'craig_love', description: 'The most satisfying Job', attached: ['fyp', 'satisfying', 'roadmarking'], musicAttached: 'Roddy Roundicch - The Rou', likeCount: 328720, commentCount: 578, avatarAuthorMusic: Assets.images.icAvatarMusic)
-  ];
+  final pageController = PageController();
+  final likes = <int>[].obs;
+  final videos = [].obs;
   
   final comments = [
     CommentModel(avatar: 'https://firebasestorage.googleapis.com/v0/b/realtime-64f58.appspot.com/o/tiktok_image%2FEllipse%205%20(1).png?alt=media&token=125ee31b-1a55-4ecd-8f72-164c0894c1e9', nameCommenter: 'martini_rond', detail: 'How neatly I write the date in my book', time: '22h', likeCount: 8098, repliesCount: 4),
@@ -25,6 +24,16 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
   @override
   void onInit() {
     super.onInit();
+    videos.add(VideoModel(video: Assets.images.video1, avatar: Assets.images.avatar1, nameAuthor: 'karennne', description: '', attached: ['avicii', 'wflove'], musicAttached: 'Avicii - Waiting For Love (ft.', likeCount: 4445, commentCount: 64));
+    videos.add(VideoModel(video: Assets.images.video2, avatar: Assets.images.avatar2, nameAuthor: 'craig_love', description: 'The most satisfying Job', attached: ['fyp', 'satisfying', 'roadmarking'], musicAttached: 'Roddy Roundicch - The Rou', likeCount: 328720, commentCount: 578, avatarAuthorMusic: Assets.images.icAvatarMusic));
     tabController = TabController(length: videos.length, vsync: this);
+    for (var video in videos) {
+      video.isLiked = false;
+    }
+  }
+
+  void onTapFavourite(int index) {
+    videos[index].isLiked = !videos[index].isLiked;
+    videos.refresh();
   }
 }

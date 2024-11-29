@@ -11,7 +11,6 @@ import '../../widget/bottom_sheet/bottom_sheet_share.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  final pageController = PageController();
   final controller = Get.find<HomeController>();
 
   @override
@@ -47,23 +46,23 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildPageVideo() {
-    return PageView.builder(
-        controller: pageController,
+    return Obx(() => PageView.builder(
+        controller: controller.pageController,
         scrollDirection: Axis.vertical,
-        itemCount: controller.videos.length,
+        itemCount: controller.videos.value.length,
         itemBuilder: (context, index) {
           return ItemPageVideo(
             videoModel: controller.videos[index],
             onTapFavourite: () {
-
+              controller.onTapFavourite(index);
             },
             onTapComment: () {
               Get.bottomSheet(
-                  BottomSheetComment(
-                    comments: controller.comments,
-                    closeBottomComment: () => Get.back(),
-                  ),
-                  isScrollControlled: true,
+                BottomSheetComment(
+                  comments: controller.comments,
+                  closeBottomComment: () => Get.back(),
+                ),
+                isScrollControlled: true,
               );
             },
             onTapShare: () {
@@ -74,6 +73,6 @@ class HomePage extends StatelessWidget {
             },
           );
         }
-    );
+    ));
   }
 }

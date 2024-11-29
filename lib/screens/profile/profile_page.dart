@@ -153,6 +153,7 @@ class ProfilePage extends StatelessWidget {
   /// Build tab view bio
   Widget _buildTabViewBio() {
     return TabBarView(
+      physics: const NeverScrollableScrollPhysics(),
       controller: controller.tabController,
       children: [
         _buildAllTab(videos: controller.videos),

@@ -95,7 +95,7 @@ class ItemPageVideo extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () => onTapFavourite.call(),
-                    child: Assets.images.icFavourite.svg(width: 35, height: 35)),
+                    child: Assets.images.icFavourite.svg(width: 35, height: 35, color: (videoModel.isLiked) ? ColorName.pinkRed : ColorName.white)),
                 Text(convertNumberToString(videoModel.likeCount), style: text13Semibold,)
               ],
             ),
