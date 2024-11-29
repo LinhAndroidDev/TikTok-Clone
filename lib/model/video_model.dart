@@ -1,7 +1,7 @@
 import 'package:tiktok_clone/gen/assets.dart';
 
 class VideoModel {
-  final AssetGenImage video;
+  final String video;
   final AssetGenImage avatar;
   final String nameAuthor;
   final String description;
