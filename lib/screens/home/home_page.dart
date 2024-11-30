@@ -50,9 +50,6 @@ class HomePage extends StatelessWidget {
         controller: controller.pageController,
         scrollDirection: Axis.vertical,
         itemCount: controller.videos.length,
-        onPageChanged: (index) {
-          controller.playVideo(index: index);
-        },
         itemBuilder: (context, index) {
           return ItemPageVideo(
             videoModel: controller.videos[index],
@@ -74,9 +71,6 @@ class HomePage extends StatelessWidget {
                 isScrollControlled: true,
               );
             },
-            videoController: controller.videoController,
-            state: controller.state,
-            controlVideo: () => controller.stopOrPlayVideo(),
           );
         }
     ));
