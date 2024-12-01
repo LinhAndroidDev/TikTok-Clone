@@ -15,14 +15,12 @@ class ItemPageVideo extends StatelessWidget {
       required this.onTapFavourite,
       required this.onTapComment,
       required this.onTapShare,
-      // required this.controlVideo
       });
 
   final VideoModel videoModel;
   final VoidCallback onTapFavourite ;
   final VoidCallback onTapComment;
   final VoidCallback onTapShare;
-  // final VoidCallback controlVideo;
 
   @override
   Widget build(BuildContext context) {
