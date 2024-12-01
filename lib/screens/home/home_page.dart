@@ -46,33 +46,41 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildPageVideo() {
-    return Obx(() => PageView.builder(
-        controller: controller.pageController,
-        scrollDirection: Axis.vertical,
-        itemCount: controller.videos.length,
-        itemBuilder: (context, index) {
-          return ItemPageVideo(
-            videoModel: controller.videos[index],
-            onTapFavourite: () {
-              controller.onTapFavourite(index);
-            },
-            onTapComment: () {
-              Get.bottomSheet(
-                BottomSheetComment(
-                  comments: controller.comments,
-                  closeBottomComment: () => Get.back(),
-                ),
-                isScrollControlled: true,
-              );
-            },
-            onTapShare: () {
-              Get.bottomSheet(
-                BottomSheetShare(onTapCancel: () => Get.back()),
-                isScrollControlled: true,
-              );
-            },
-          );
-        }
-    ));
+    return Obx(() {
+      if (controller.videos.isEmpty) {
+        return Container(
+          color: ColorName.black,
+          width: double.infinity,
+          height: double.infinity,
+        );
+      }
+      return PageView.builder(
+          controller: controller.pageController,
+          scrollDirection: Axis.vertical,
+          itemCount: controller.videos.length,
+          itemBuilder: (context, index) {
+            return ItemPageVideo(
+              videoModel: controller.videos[index],
+              onTapFavourite: () {
+                controller.onTapFavourite(index);
+              },
+              onTapComment: () {
+                Get.bottomSheet(
+                  BottomSheetComment(
+                    comments: controller.comments,
+                    closeBottomComment: () => Get.back(),
+                  ),
+                  isScrollControlled: true,
+                );
+              },
+              onTapShare: () {
+                Get.bottomSheet(
+                  BottomSheetShare(onTapCancel: () => Get.back()),
+                  isScrollControlled: true,
+                );
+              },
+            );
+          });
+    });
   }
 }

@@ -68,25 +68,32 @@ class ItemPageVideo extends StatelessWidget {
             ],),
           const SizedBox(height: 3,),
           (videoModel.musicAttached != null)
-              ? _buildMusicAttached()
+              ? _buildMusicAttached(context)
               : const SizedBox(),
         ],
       ),
     );
   }
 
-  Widget _buildMusicAttached() {
-    return Row(
-      children: [
-        Assets.images.icMusic.svg(width: 15, height: 15),
-        const SizedBox(
-          width: 5,
-        ),
-        Text(
-          videoModel.musicAttached ?? '',
-          style: textNormal.copyWith(color: ColorName.white),
-        ),
-      ],
+  Widget _buildMusicAttached(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.7,
+      child: Row(
+        children: [
+          Assets.images.icMusic.svg(width: 15, height: 15),
+          const SizedBox(
+            width: 5,
+          ),
+          Expanded(
+            child: Text(
+              videoModel.musicAttached ?? '',
+              style: textNormal.copyWith(color: ColorName.white),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -142,8 +149,15 @@ class ItemPageVideo extends StatelessWidget {
             children: [
               Assets.images.icDisc.svg(width: 49, height: 49),
               if (videoModel.avatarAuthorMusic != null)
-                videoModel.avatarAuthorMusic!
-                    .image(width: 30, height: 30, fit: BoxFit.fill)
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.network(
+                    videoModel.avatarAuthorMusic!,
+                    width: 30,
+                    height: 30,
+                    fit: BoxFit.cover,
+                  ),
+                )
             ],
           ),
         )

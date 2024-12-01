@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:tiktok_clone/routes/app_route.dart';
 import 'package:tiktok_clone/screens/root/root_binding.dart';
-
-import 'gen/colors.dart';
+import 'package:tiktok_clone/widget/loading/loading.dart';
 
 void main() {
+  Loading.configLoading();
   runApp(const MyApp());
 }
 
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         useMaterial3: true,
       ),
+      builder: EasyLoading.init(),
     );
   }
 }
