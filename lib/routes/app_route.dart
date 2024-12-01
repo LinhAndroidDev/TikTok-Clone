@@ -39,7 +39,6 @@ enum AppRoute {
       case AppRoute.home:
         return HomeRoute().createRoute(settings);
       case AppRoute.discover:
-        print('Tiktok Clone: DiscoverRoute');
         return DiscoverRoute().createRoute(settings);
       case AppRoute.creative:
         return CreativeRoute().createRoute(settings);

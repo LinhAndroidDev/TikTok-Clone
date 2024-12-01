@@ -78,13 +78,8 @@ extension AppNavigateScreen on AppNavigate {
   }
 
   Future<T?> gotoDiscoverPage<T>() async {
-    print('Tiktok Clone: gotoDiscoverPage');
     selectedTab(BottomNavigationItem.discover);
-    try {
-      return await offAllNamed(AppRoute.discover.rawValue);
-    } catch (e) {
-      print('Tiktok Clone: $e');
-    }
+    return await offAllNamed(AppRoute.discover.rawValue);
   }
 
   Future<T> gotoCreativePage<T>() async {

@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
     return Obx(() => PageView.builder(
         controller: controller.pageController,
         scrollDirection: Axis.vertical,
-        itemCount: controller.videos.value.length,
+        itemCount: controller.videos.length,
         itemBuilder: (context, index) {
           return ItemPageVideo(
             videoModel: controller.videos[index],

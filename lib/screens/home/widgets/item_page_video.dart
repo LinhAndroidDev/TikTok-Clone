@@ -3,8 +3,10 @@ import 'package:tiktok_clone/gen/colors.dart';
 import 'package:tiktok_clone/model/video_model.dart';
 import 'package:tiktok_clone/style/text_style.dart';
 import 'package:tiktok_clone/utils/utils.dart';
+import 'package:tiktok_clone/widget/circle_animation.dart';
 
 import '../../../gen/assets.dart';
+import 'video_play_item.dart';
 
 class ItemPageVideo extends StatelessWidget {
   const ItemPageVideo(
@@ -12,7 +14,8 @@ class ItemPageVideo extends StatelessWidget {
       required this.videoModel,
       required this.onTapFavourite,
       required this.onTapComment,
-      required this.onTapShare});
+      required this.onTapShare,
+      });
 
   final VideoModel videoModel;
   final VoidCallback onTapFavourite ;
@@ -21,27 +24,26 @@ class ItemPageVideo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: videoModel.video.image(fit: BoxFit.fitWidth),
-        ),
-        Positioned(
-          bottom: 0,
-            right: 5,
-            child: IntrinsicWidth(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.5,
-            child: _buildFeature(),
-          ),
-        )),
-        Positioned(
-          bottom: 15,
-            left: 15,
-            child: _buildDescriptionVideo(context))
-      ],
+    return Container(
+      color: ColorName.black,
+      child: Stack(
+        children: [
+          VideoPlayerItem(videoUrl: videoModel.video),
+          Positioned(
+            bottom: 0,
+              right: 5,
+              child: IntrinsicWidth(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: _buildFeature(),
+            ),
+          )),
+          Positioned(
+            bottom: 15,
+              left: 15,
+              child: _buildDescriptionVideo(context))
+        ],
+      ),
     );
   }
 
@@ -65,13 +67,26 @@ class ItemPageVideo extends StatelessWidget {
                   ))
             ],),
           const SizedBox(height: 3,),
-          Row(children: [
-            Assets.images.icMusic.svg(width: 15, height: 15),
-            const SizedBox(width: 5,),
-            Text(videoModel.musicAttached, style: textNormal.copyWith(color: ColorName.white),),
-          ],)
+          (videoModel.musicAttached != null)
+              ? _buildMusicAttached()
+              : const SizedBox(),
         ],
       ),
+    );
+  }
+
+  Widget _buildMusicAttached() {
+    return Row(
+      children: [
+        Assets.images.icMusic.svg(width: 15, height: 15),
+        const SizedBox(
+          width: 5,
+        ),
+        Text(
+          videoModel.musicAttached ?? '',
+          style: textNormal.copyWith(color: ColorName.white),
+        ),
+      ],
     );
   }
 
@@ -87,7 +102,9 @@ class ItemPageVideo extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(color: Colors.white, width: 1),
           ),
-          child: videoModel.avatar.image(width: 47, height: 47),
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: Image.network(videoModel.avatar, width: 47, height: 47, fit: BoxFit.cover,)),
         ),
         Column(
           children: [
@@ -119,15 +136,17 @@ class ItemPageVideo extends StatelessWidget {
             ),
           ],
         ),
-        Stack(
-          alignment: Alignment.center,
-          children: [
-            Assets.images.icDisc.svg(width: 49, height: 49),
-            if (videoModel.avatarAuthorMusic != null)
-              videoModel.avatarAuthorMusic!
-                  .image(width: 30, height: 30, fit: BoxFit.fill)
-          ],
-        ),
+        CircleAnimation(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Assets.images.icDisc.svg(width: 49, height: 49),
+              if (videoModel.avatarAuthorMusic != null)
+                videoModel.avatarAuthorMusic!
+                    .image(width: 30, height: 30, fit: BoxFit.fill)
+            ],
+          ),
+        )
       ],
     );
   }
