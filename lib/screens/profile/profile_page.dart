@@ -16,25 +16,27 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) {
-          return [
-            SliverToBoxAdapter(
-              child: Container(
-                color: ColorName.white,
-                child: Column(
-                  children: [
-                    const SizedBox(height: 60,),
-                    _buildHeader(),
-                    _buildContent()
-                  ],
-                ),
+        body: NestedScrollView(
+      headerSliverBuilder: (context, innerBoxIsScrolled) {
+        return [
+          SliverToBoxAdapter(
+            child: Container(
+              color: ColorName.white,
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 60,
+                  ),
+                  _buildHeader(),
+                  _buildContent()
+                ],
               ),
-            )
-          ];
-        },
-        body: _buildTabViewBio(),
-      ));
+            ),
+          )
+        ];
+      },
+      body: _buildTabViewBio(),
+    ));
   }
 
   /// Build header of profile
@@ -64,7 +66,13 @@ class ProfilePage extends StatelessWidget {
         ),
         Positioned(
             right: 15,
-            child: Assets.images.icMenuCircle.svg(width: 18, height: 4))
+            child: InkWell(
+              onTap: () => AppNavigate.instance.gotoSettingPage(),
+              child: SizedBox(
+                  width: 18,
+                  height: 18,
+                  child: Assets.images.icMenuCircle.svg(width: 18, height: 4)),
+            ))
       ],
     );
   }
@@ -74,50 +82,75 @@ class ProfilePage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 15,),
+        const SizedBox(
+          height: 15,
+        ),
         Assets.images.avatarProfile.image(width: 96, height: 96),
-        const SizedBox(height: 10,),
-        Text('@jacob_w', style: textNormalSemibold.copyWith(color: ColorName.black),),
-        const SizedBox(height: 15,),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(
+          '@jacob_w',
+          style: textNormalSemibold.copyWith(color: ColorName.black),
+        ),
+        const SizedBox(
+          height: 15,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const SizedBox(width: 20,),
+            const SizedBox(
+              width: 20,
+            ),
             _itemDetailProfile(quantity: 14, title: 'Following'),
             _itemDetailProfile(quantity: 38, title: 'Followers'),
             _itemDetailProfile(quantity: 91, title: 'Likes'),
-            const SizedBox(width: 20,),
+            const SizedBox(
+              width: 20,
+            ),
           ],
         ),
-        const SizedBox(height: 15,),
+        const SizedBox(
+          height: 15,
+        ),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             InkWell(
               onTap: () => AppNavigate.instance.gotoEditProfilePage(),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
                 decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xFFE3E3E4), width: 1),
-                  borderRadius: BorderRadius.circular(3)
+                    border:
+                        Border.all(color: const Color(0xFFE3E3E4), width: 1),
+                    borderRadius: BorderRadius.circular(3)),
+                child: Text(
+                  'Edit Profile',
+                  style: textNormalSemibold.copyWith(color: ColorName.black),
                 ),
-                child: Text('Edit Profile', style: textNormalSemibold.copyWith(color: ColorName.black),),
               ),
             ),
-            const SizedBox(width: 5,),
+            const SizedBox(
+              width: 5,
+            ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
               decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xFFE3E3E4), width: 1),
-                borderRadius: BorderRadius.circular(3)
-              ),
+                  border: Border.all(color: const Color(0xFFE3E3E4), width: 1),
+                  borderRadius: BorderRadius.circular(3)),
               child: Assets.images.icSaveThick.svg(width: 22, height: 22),
             )
           ],
         ),
-        const SizedBox(height: 15,),
-        Text('Tap to add bio', style: text13White.copyWith(color: ColorName.grey)),
-        const SizedBox(height: 15,),
+        const SizedBox(
+          height: 15,
+        ),
+        Text('Tap to add bio',
+            style: text13White.copyWith(color: ColorName.grey)),
+        const SizedBox(
+          height: 15,
+        ),
         const CustomDivider(),
         _buildTabBio()
       ],
@@ -130,7 +163,9 @@ class ProfilePage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(quantity.toString(), style: text18bold),
-        const SizedBox(height: 5,),
+        const SizedBox(
+          height: 5,
+        ),
         Text(title, style: text13White.copyWith(color: ColorName.grey))
       ],
     );
@@ -139,21 +174,31 @@ class ProfilePage extends StatelessWidget {
   /// Build tab bio
   Widget _buildTabBio() {
     return Obx(() => TabBar(
-        indicatorColor: ColorName.black,
-        indicatorSize: TabBarIndicatorSize.label,
-        labelColor: ColorName.black,
-        dividerColor: ColorName.whiteDark,
-        controller: controller.tabController,
-        tabs: [
-          Tab(
-            icon: Assets.images.icMenuAll.svg(width: 16, height: 16, color: controller.currentTab.value == 0 ? ColorName.black : const Color(0xFFD7D7D9)),
-          ),
-          Tab(
-            icon: Assets.images.icFavouriteSaved.svg(width: 16, height: 16, color: controller.currentTab.value == 1 ? ColorName.black : const Color(0xFFD7D7D9)),
-          ),
-        ]));
+            indicatorColor: ColorName.black,
+            indicatorSize: TabBarIndicatorSize.label,
+            labelColor: ColorName.black,
+            dividerColor: ColorName.whiteDark,
+            controller: controller.tabController,
+            tabs: [
+              Tab(
+                icon: Assets.images.icMenuAll.svg(
+                    width: 16,
+                    height: 16,
+                    color: controller.currentTab.value == 0
+                        ? ColorName.black
+                        : const Color(0xFFD7D7D9)),
+              ),
+              Tab(
+                icon: Assets.images.icFavouriteSaved.svg(
+                    width: 16,
+                    height: 16,
+                    color: controller.currentTab.value == 1
+                        ? ColorName.black
+                        : const Color(0xFFD7D7D9)),
+              ),
+            ]));
   }
-  
+
   /// Build tab view bio
   Widget _buildTabViewBio() {
     return TabBarView(
@@ -173,23 +218,23 @@ class ProfilePage extends StatelessWidget {
         shrinkWrap: true,
         itemCount: videos.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            childAspectRatio: 1 / 1.3
-        ),
+            crossAxisCount: 3, childAspectRatio: 1 / 1.3),
         itemBuilder: (context, index) {
           final widthVideo = MediaQuery.of(context).size.width / 3;
           return Container(
             decoration: const BoxDecoration(
-              color: ColorName.black,
-              border: Border(
-                right: BorderSide(color: ColorName.whiteDark, width: 1),
-                bottom: BorderSide(color: ColorName.whiteDark, width: 1),
-              )
-            ),
+                color: ColorName.black,
+                border: Border(
+                  right: BorderSide(color: ColorName.whiteDark, width: 1),
+                  bottom: BorderSide(color: ColorName.whiteDark, width: 1),
+                )),
             alignment: Alignment.center,
-            child: Image.network(videos[index], fit: BoxFit.fitWidth, width: widthVideo,),
+            child: Image.network(
+              videos[index],
+              fit: BoxFit.fitWidth,
+              width: widthVideo,
+            ),
           );
-        }
-    );
+        });
   }
 }

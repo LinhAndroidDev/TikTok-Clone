@@ -18,9 +18,13 @@ class MessagePage extends StatelessWidget {
         height: double.infinity,
         child: Column(
           children: [
-            const SizedBox(height: 60,),
+            const SizedBox(
+              height: 60,
+            ),
             _buildHeader(),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             const CustomDivider(),
             Expanded(
               child: Column(
@@ -29,9 +33,11 @@ class MessagePage extends StatelessWidget {
                 children: [
                   Assets.images.icSendThin.svg(width: 70, height: 70),
                   const SizedBox(height: 20),
-                  Text('Message your friends', style: text16Semibold.copyWith(color: Colors.black)),
+                  Text('Message your friends',
+                      style: text16Semibold.copyWith(color: Colors.black)),
                   const SizedBox(height: 10),
-                  Text('Share videos or start a conversation', style: textSmall.copyWith(color: Colors.grey)),
+                  Text('Share videos or start a conversation',
+                      style: textSmall.copyWith(color: Colors.grey)),
                 ],
               ),
             )
@@ -46,17 +52,28 @@ class MessagePage extends StatelessWidget {
       fit: StackFit.loose,
       children: [
         Positioned(
-          left: 15,
+            left: 15,
             child: InkWell(
-              onTap: () => Get.back(),
-                child: const Icon(Icons.arrow_back_ios_new_sharp, color: ColorName.black, size: 18,))),
+                onTap: () => Get.back(),
+                child: const Icon(
+                  Icons.arrow_back_ios_new_sharp,
+                  color: ColorName.black,
+                  size: 18,
+                ))),
         Align(
           alignment: Alignment.center,
-          child: Text('Direct messages', style: text16bold,),
+          child: Text(
+            'Direct messages',
+            style: text16bold,
+          ),
         ),
         const Positioned(
             right: 15,
-            child: Icon(Icons.add, color: ColorName.black, size: 20,)),
+            child: Icon(
+              Icons.add,
+              color: ColorName.black,
+              size: 20,
+            )),
       ],
     );
   }

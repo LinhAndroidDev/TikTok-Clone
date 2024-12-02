@@ -180,6 +180,50 @@ class $AssetsImagesGen {
   SvgGenImage get icInviteFriend =>
       const SvgGenImage('assets/images/ic_invite_friend.svg');
 
+  /// File path: assets/images/ic_accessibility.svg
+  SvgGenImage get icAccessibility =>
+      const SvgGenImage('assets/images/ic_accessibility.svg');
+
+  /// File path: assets/images/ic_balance.svg
+  SvgGenImage get icBalance =>
+      const SvgGenImage('assets/images/ic_balance.svg');
+
+  /// File path: assets/images/ic_data_saver.svg
+  SvgGenImage get icDataSaver =>
+      const SvgGenImage('assets/images/ic_data_saver.svg');
+
+  /// File path: assets/images/ic_digital.svg
+  SvgGenImage get icDigital =>
+      const SvgGenImage('assets/images/ic_digital.svg');
+
+  /// File path: assets/images/ic_language.svg
+  SvgGenImage get icLanguage =>
+      const SvgGenImage('assets/images/ic_language.svg');
+
+  /// File path: assets/images/ic_lock.svg
+  SvgGenImage get icLock =>
+      const SvgGenImage('assets/images/ic_lock.svg');
+
+  /// File path: assets/images/ic_notification.svg
+  SvgGenImage get icNotification =>
+      const SvgGenImage('assets/images/ic_notification.svg');
+
+  /// File path: assets/images/ic_problem.svg
+  SvgGenImage get icProblem =>
+      const SvgGenImage('assets/images/ic_problem.svg');
+
+  /// File path: assets/images/ic_qr_code.svg
+  SvgGenImage get icQrCode =>
+      const SvgGenImage('assets/images/ic_qr_code.svg');
+
+  /// File path: assets/images/ic_question.svg
+  SvgGenImage get icQuestion =>
+      const SvgGenImage('assets/images/ic_question.svg');
+
+  /// File path: assets/images/ic_share_stroke.svg
+  SvgGenImage get icShareStroke =>
+      const SvgGenImage('assets/images/ic_share_stroke.svg');
+
   List<dynamic> get values => [
     icAccountCheck,
     icAccountUnCheck,
@@ -224,7 +268,18 @@ class $AssetsImagesGen {
     icVideo,
     icCopy,
     icScan,
-    icInviteFriend
+    icInviteFriend,
+    icAccessibility,
+    icBalance,
+    icDataSaver,
+    icDigital,
+    icLanguage,
+    icLock,
+    icNotification,
+    icProblem,
+    icQrCode,
+    icQuestion,
+    icShareStroke,
   ];
 }
 
