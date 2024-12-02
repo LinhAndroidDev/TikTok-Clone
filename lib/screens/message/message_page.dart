@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tiktok_clone/gen/colors.dart';
-import 'package:tiktok_clone/routes/app_navigate.dart';
-import 'package:tiktok_clone/style/text_style.dart';
+import 'package:tiktok_clone/widget/divider/divider.dart';
 
 import '../../gen/assets.dart';
+import '../../style/text_style.dart';
 
-class InboxPage extends StatelessWidget {
-  const InboxPage({super.key});
+class MessagePage extends StatelessWidget {
+  const MessagePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +20,18 @@ class InboxPage extends StatelessWidget {
           children: [
             const SizedBox(height: 60,),
             _buildHeader(),
+            const SizedBox(height: 10,),
+            const CustomDivider(),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Assets.images.icInboxThin.svg(width: 70, height: 70),
+                  Assets.images.icSendThin.svg(width: 70, height: 70),
                   const SizedBox(height: 20),
-                  Text('Notifications aren’t available', style: text16Semibold.copyWith(color: Colors.black)),
+                  Text('Message your friends', style: text16Semibold.copyWith(color: Colors.black)),
                   const SizedBox(height: 10),
-                  Text('Notifications about your account will appear here', style: textSmall.copyWith(color: Colors.grey)),
+                  Text('Share videos or start a conversation', style: textSmall.copyWith(color: Colors.grey)),
                 ],
               ),
             )
@@ -42,22 +45,18 @@ class InboxPage extends StatelessWidget {
     return Stack(
       fit: StackFit.loose,
       children: [
+        Positioned(
+          left: 15,
+            child: InkWell(
+              onTap: () => Get.back(),
+                child: const Icon(Icons.arrow_back_ios_new_sharp, color: ColorName.black, size: 18,))),
         Align(
           alignment: Alignment.center,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('All activity', style: text16bold,),
-              const SizedBox(width: 4,),
-              Assets.images.icTriangle.svg(width: 7, height: 7)
-            ],
-          ),
+          child: Text('Direct messages', style: text16bold,),
         ),
-        Positioned(
-          right: 15,
-            child: InkWell(
-              onTap: () => AppNavigate.instance.gotoMessagePage(),
-                child: Assets.images.icSend.svg(width: 20, height: 20)))
+        const Positioned(
+            right: 15,
+            child: Icon(Icons.add, color: ColorName.black, size: 20,)),
       ],
     );
   }

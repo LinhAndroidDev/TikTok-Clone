@@ -96,4 +96,12 @@ extension AppNavigateScreen on AppNavigate {
     selectedTab(BottomNavigationItem.profile);
     return await offAllNamed(AppRoute.profile.rawValue);
   }
+
+  Future<T> gotoMessagePage<T>() async {
+    return await toNamed(AppRoute.message.rawValue);
+  }
+
+  Future<T> gotoEditProfilePage<T>() async {
+    return await toNamed(AppRoute.editProfile.rawValue);
+  }
 }

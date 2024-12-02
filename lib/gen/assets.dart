@@ -156,6 +156,21 @@ class $AssetsImagesGen {
   SvgGenImage get icSaveThick =>
       const SvgGenImage('assets/images/ic_save_thick.svg');
 
+  /// File path: assets/images/ic_send_thin.svg
+  SvgGenImage get icSendThin =>
+      const SvgGenImage('assets/images/ic_send_thin.svg');
+
+  /// File path: assets/images/ic_camera.svg
+  SvgGenImage get icCamera =>
+      const SvgGenImage('assets/images/ic_camera.svg');
+
+  /// File path: assets/images/ic_video.svg
+  SvgGenImage get icVideo =>
+      const SvgGenImage('assets/images/ic_video.svg');
+
+  /// File path: assets/images/ic_copy.svg
+  SvgGenImage get icCopy =>
+      const SvgGenImage('assets/images/ic_copy.svg');
 
   List<dynamic> get values => [
     icAccountCheck,
@@ -196,6 +211,10 @@ class $AssetsImagesGen {
     icFavouriteSaved,
     icMenuAll,
     icSaveThick,
+    icSendThin,
+    icCamera,
+    icVideo,
+    icCopy
   ];
 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/gen/colors.dart';
+import 'package:tiktok_clone/routes/app_navigate.dart';
 import 'package:tiktok_clone/screens/profile/profile_controller.dart';
 import 'package:tiktok_clone/widget/divider/divider.dart';
 
@@ -92,13 +93,16 @@ class ProfilePage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-              decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xFFE3E3E4), width: 1),
-                borderRadius: BorderRadius.circular(3)
+            InkWell(
+              onTap: () => AppNavigate.instance.gotoEditProfilePage(),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                decoration: BoxDecoration(
+                  border: Border.all(color: const Color(0xFFE3E3E4), width: 1),
+                  borderRadius: BorderRadius.circular(3)
+                ),
+                child: Text('Edit Profile', style: textNormalSemibold.copyWith(color: ColorName.black),),
               ),
-              child: Text('Edit Profile', style: textNormalSemibold.copyWith(color: ColorName.black),),
             ),
             const SizedBox(width: 5,),
             Container(
@@ -153,7 +157,6 @@ class ProfilePage extends StatelessWidget {
   /// Build tab view bio
   Widget _buildTabViewBio() {
     return TabBarView(
-      physics: const NeverScrollableScrollPhysics(),
       controller: controller.tabController,
       children: [
         _buildAllTab(videos: controller.videos),
