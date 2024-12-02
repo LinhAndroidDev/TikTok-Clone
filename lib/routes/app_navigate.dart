@@ -104,4 +104,8 @@ extension AppNavigateScreen on AppNavigate {
   Future<T> gotoEditProfilePage<T>() async {
     return await toNamed(AppRoute.editProfile.rawValue);
   }
+
+  Future<T> gotoSettingPage<T>() async {
+    return await toNamed(AppRoute.setting.rawValue);
+  }
 }

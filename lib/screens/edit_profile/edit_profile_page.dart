@@ -93,7 +93,7 @@ class EditProfilePage extends StatelessWidget {
   }
 
   /// Build content of profile
-  List _buildContent() {
+  List<Widget> _buildContent() {
     return [
       _buildRowInfo(title: 'Name', action: 'Jacob West'),
       _buildRowInfo(title: 'Username', action: 'jacob_w'),

@@ -8,6 +8,7 @@ import 'package:tiktok_clone/screens/inbox/inbox_route.dart';
 import 'package:tiktok_clone/screens/message/message_route.dart';
 import 'package:tiktok_clone/screens/profile/profile_route.dart';
 import 'package:tiktok_clone/screens/root/root_route.dart';
+import 'package:tiktok_clone/screens/setting/setting_route.dart';
 
 abstract class AppRouteable<T> {
   Route createRoute(RouteSettings settings) {
@@ -23,7 +24,8 @@ enum AppRoute {
   inbox('/inbox'),
   profile('/profile'),
   message('/message'),
-  editProfile('/edit_profile'),;
+  editProfile('/edit_profile'),
+  setting('/setting');
 
   const AppRoute(this.rawValue);
 
@@ -54,6 +56,8 @@ enum AppRoute {
         return MessageRoute().createRoute(settings);
       case AppRoute.editProfile:
         return EditProfileRoute().createRoute(settings);
+      case AppRoute.setting:
+        return SettingRoute().createRoute(settings);
     }
   }
 

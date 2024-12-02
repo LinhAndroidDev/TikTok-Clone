@@ -40,46 +40,52 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Stack(
       children: [
-        finishLoad
-        ? Align(
-          alignment: Alignment.center,
-          child: SizedBox(
-            width: size.width,
-            height: size.width / videoPlayerController.value.aspectRatio,
-            child: VideoPlayer(videoPlayerController),
-          ),
-        )
-        : const SizedBox(),
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              isPlaying = !isPlaying;
-              videoPlayerController.value.isPlaying
-                  ? videoPlayerController.pause()
-                  : videoPlayerController.play();
-            });
-          },
-          child: Container(
-            color: Colors.transparent,
-            width: size.width,
-            height: size.height,
-            child: Center(
-              child: (!isPlaying)
-                  ? const Opacity(
-                      opacity: 0.3,
-                      child: Icon(
-                        Icons.play_arrow,
-                        size: 80,
-                        color: Colors.white,
-                      ))
-                  : const SizedBox(),
-            ),
-          ),
-        )
+        if(finishLoad)
+        ..._buildViewVideo(context)
+        else const SizedBox(),
       ],
     );
+  }
+
+  List<Widget> _buildViewVideo(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return [
+      Align(
+        alignment: Alignment.center,
+        child: SizedBox(
+          width: size.width,
+          height: size.width / videoPlayerController.value.aspectRatio,
+          child: VideoPlayer(videoPlayerController),
+        ),
+      ),
+      GestureDetector(
+        onTap: () {
+          setState(() {
+            isPlaying = !isPlaying;
+            videoPlayerController.value.isPlaying
+                ? videoPlayerController.pause()
+                : videoPlayerController.play();
+          });
+        },
+        child: Container(
+          color: Colors.transparent,
+          width: size.width,
+          height: size.height,
+          child: Center(
+            child: (!isPlaying)
+                ? const Opacity(
+                opacity: 0.3,
+                child: Icon(
+                  Icons.play_arrow,
+                  size: 80,
+                  color: Colors.white,
+                ))
+                : const SizedBox(),
+          ),
+        ),
+      )
+    ];
   }
 }

@@ -172,6 +172,14 @@ class $AssetsImagesGen {
   SvgGenImage get icCopy =>
       const SvgGenImage('assets/images/ic_copy.svg');
 
+  /// File path: assets/images/ic_scan.svg
+  SvgGenImage get icScan =>
+      const SvgGenImage('assets/images/ic_scan.svg');
+
+  /// File path: assets/images/ic_invite_friend.svg
+  SvgGenImage get icInviteFriend =>
+      const SvgGenImage('assets/images/ic_invite_friend.svg');
+
   List<dynamic> get values => [
     icAccountCheck,
     icAccountUnCheck,
@@ -214,7 +222,9 @@ class $AssetsImagesGen {
     icSendThin,
     icCamera,
     icVideo,
-    icCopy
+    icCopy,
+    icScan,
+    icInviteFriend
   ];
 }
 
