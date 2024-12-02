@@ -16,6 +16,16 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: _buildHeader(),
+        backgroundColor: ColorName.white,
+        surfaceTintColor: ColorName.white,
+        titleSpacing: 0,
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(0),
+          child: CustomDivider(),
+        ),
+      ),
         body: NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return [
@@ -25,9 +35,8 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 60,
+                    height: 20,
                   ),
-                  _buildHeader(),
                   _buildContent()
                 ],
               ),
@@ -47,7 +56,7 @@ class ProfilePage extends StatelessWidget {
       children: [
         Positioned(
             left: 15,
-            child: Assets.images.icAddAccount.svg(width: 22, height: 22)),
+            child: Assets.images.icAddAccount.svg(width: 20, height: 20)),
         Align(
           alignment: Alignment.center,
           child: Row(
@@ -82,9 +91,6 @@ class ProfilePage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(
-          height: 15,
-        ),
         Assets.images.avatarProfile.image(width: 96, height: 96),
         const SizedBox(
           height: 10,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tiktok_clone/gen/colors.dart';
 import 'package:tiktok_clone/model/video_model.dart';
 import 'package:tiktok_clone/style/text_style.dart';
@@ -8,8 +9,50 @@ import 'package:tiktok_clone/widget/circle_animation.dart';
 import '../../../gen/assets.dart';
 import 'video_play_item.dart';
 
+class TextController extends GetxController {
+  var textExpand = ''.obs;
+  var isCollapse = false;
+
+  int _getLastVisibleCharIndex(BuildContext context, String text, int maxLines,
+      TextStyle textStyle) {
+    final textSpan = TextSpan(text: text, style: textStyle);
+    final textPainter = TextPainter(
+      text: textSpan,
+      maxLines: maxLines,
+      textDirection: TextDirection.ltr,
+    );
+
+    textPainter.layout(maxWidth: MediaQuery
+        .of(context)
+        .size
+        .width);
+
+    // Tính toán ký tự cuối cùng hiển thị trên màn hình
+    final lastVisibleOffset = textPainter.getPositionForOffset(
+        Offset(textPainter.width, textPainter.height));
+    return lastVisibleOffset.offset;
+  }
+
+  void collapseText(BuildContext context, String text, TextStyle styleText) {
+    final lastVisibleCharIndex = _getLastVisibleCharIndex(
+        context, text, 1, styleText);
+    if (lastVisibleCharIndex == text.length) {
+      textExpand.value = text;
+    } else {
+      if (isCollapse) {
+        isCollapse = false;
+        textExpand.value = text;
+      } else {
+        isCollapse = true;
+        textExpand.value =
+        '${text.substring(0, lastVisibleCharIndex - 11)}...Xem thêm';
+      }
+    }
+  }
+}
+
 class ItemPageVideo extends StatelessWidget {
-  const ItemPageVideo(
+  ItemPageVideo(
       {super.key,
       required this.videoModel,
       required this.onTapFavourite,
@@ -21,6 +64,8 @@ class ItemPageVideo extends StatelessWidget {
   final VoidCallback onTapFavourite ;
   final VoidCallback onTapComment;
   final VoidCallback onTapShare;
+
+  final TextController controller = Get.put(TextController());
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +94,9 @@ class ItemPageVideo extends StatelessWidget {
 
   /// Build description of video
   Widget _buildDescriptionVideo(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.collapseText(context, videoModel.description, text13White);
+    });
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.7,
       child: Column(
@@ -60,7 +108,14 @@ class ItemPageVideo extends StatelessWidget {
           Wrap(
             spacing: 5,
             children: [
-            Text(videoModel.description, style: text13White,),
+              Obx(() {
+                return InkWell(
+                    onTap: () =>
+                        controller.collapseText(
+                            context, videoModel.description, text13White),
+                    child: Text(
+                      controller.textExpand.value, style: text13White,));
+              }),
             ...videoModel.attached.map((attach) => Text(
                     '#$attach',
                     style: textNormalSemibold,
@@ -75,6 +130,7 @@ class ItemPageVideo extends StatelessWidget {
     );
   }
 
+  /// Build music attached
   Widget _buildMusicAttached(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.7,
@@ -114,34 +170,7 @@ class ItemPageVideo extends StatelessWidget {
               child: Image.network(videoModel.avatar, width: 47, height: 47, fit: BoxFit.cover,)),
         ),
         Column(
-          children: [
-            Column(
-              children: [
-                InkWell(
-                  onTap: () => onTapFavourite.call(),
-                    child: Assets.images.icFavourite.svg(width: 35, height: 35, color: (videoModel.isLiked) ? ColorName.pinkRed : ColorName.white)),
-                Text(convertNumberToString(videoModel.likeCount), style: text13Semibold,)
-              ],
-            ),
-            const SizedBox(height: 20,),
-            Column(
-              children: [
-                InkWell(
-                  onTap: () => onTapComment.call(),
-                    child: Assets.images.icMessage.svg(width: 35, height: 35)),
-                Text(convertNumberToString(videoModel.commentCount), style: text13Semibold,)
-              ],
-            ),
-            const SizedBox(height: 20,),
-            Column(
-              children: [
-                InkWell(
-                  onTap: () => onTapShare.call(),
-                    child: Assets.images.icShare.svg(width: 35, height: 35)),
-                Text('Share', style: text13Semibold,)
-              ],
-            ),
-          ],
+          children: _buildListFeature(),
         ),
         CircleAnimation(
           child: Stack(
@@ -163,5 +192,37 @@ class ItemPageVideo extends StatelessWidget {
         )
       ],
     );
+  }
+
+  /// Build list feature
+  List<Widget> _buildListFeature() {
+    return [
+      Column(
+        children: [
+          InkWell(
+              onTap: () => onTapFavourite.call(),
+              child: Assets.images.icFavourite.svg(width: 35, height: 35, color: (videoModel.isLiked) ? ColorName.pinkRed : ColorName.white)),
+          Text(convertNumberToString(videoModel.likeCount), style: text13Semibold,)
+        ],
+      ),
+      const SizedBox(height: 20,),
+      Column(
+        children: [
+          InkWell(
+              onTap: () => onTapComment.call(),
+              child: Assets.images.icMessage.svg(width: 35, height: 35)),
+          Text(convertNumberToString(videoModel.commentCount), style: text13Semibold,)
+        ],
+      ),
+      const SizedBox(height: 20,),
+      Column(
+        children: [
+          InkWell(
+              onTap: () => onTapShare.call(),
+              child: Assets.images.icShare.svg(width: 35, height: 35)),
+          Text('Share', style: text13Semibold,)
+        ],
+      ),
+    ];
   }
 }

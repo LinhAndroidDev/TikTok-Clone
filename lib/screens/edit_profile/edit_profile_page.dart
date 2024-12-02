@@ -59,7 +59,7 @@ class EditProfilePage extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.black.withOpacity(0.6),
                         shape: BoxShape.circle),
-                    child: Assets.images.icCamera.svg(width: 22, height: 22),
+                    child: Assets.images.icCamera.svg(width: 20, height: 20),
                   ),
                 )
               ],
@@ -79,7 +79,7 @@ class EditProfilePage extends StatelessWidget {
               alignment: Alignment.center,
               decoration: const BoxDecoration(
                   color: Color(0xFFF1F1F2), shape: BoxShape.circle),
-              child: Assets.images.icVideo.svg(width: 24, height: 24),
+              child: Assets.images.icVideo.svg(width: 20, height: 20),
             ),
             const SizedBox(
               height: 15,
