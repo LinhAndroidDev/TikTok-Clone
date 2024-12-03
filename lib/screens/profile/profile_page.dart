@@ -5,6 +5,7 @@ import 'package:tiktok_clone/gen/colors.dart';
 import 'package:tiktok_clone/routes/app_navigate.dart';
 import 'package:tiktok_clone/screens/profile/profile_controller.dart';
 import 'package:tiktok_clone/widget/divider/divider.dart';
+import 'package:tiktok_clone/widget/indicator_tabbar/indicator_tabbar.dart';
 
 import '../../gen/assets.dart';
 import '../../style/text_style.dart';
@@ -32,25 +33,15 @@ class ProfilePage extends StatelessWidget {
             SliverToBoxAdapter(
               child: Container(
                 color: ColorName.white,
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    _buildContent()
-                  ],
-                ),
+                child: _buildContent(),
               ),
             ),
             SliverStickyHeader(
               header: _buildTabBio(),
-              sliver: SliverFillRemaining(
-                  child: _buildTabViewBio()
-              ),
+              sliver: SliverFillRemaining(child: _buildTabViewBio()),
             )
           ],
-        )
-    );
+        ));
   }
 
   /// Build header of profile
@@ -96,6 +87,9 @@ class ProfilePage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        const SizedBox(
+          height: 20,
+        ),
         Assets.images.avatarProfile.image(width: 96, height: 96),
         const SizedBox(
           height: 10,
@@ -184,11 +178,9 @@ class ProfilePage extends StatelessWidget {
   /// Build tab bio
   Widget _buildTabBio() {
     return Obx(() => Container(
-      color: ColorName.white,
-      child: TabBar(
-              indicatorColor: ColorName.black,
-              indicatorSize: TabBarIndicatorSize.label,
-              labelColor: ColorName.black,
+          color: ColorName.white,
+          child: TabBar(
+              indicator: const FixedWidthIndicator(color: ColorName.black, width: 30, thickness: 3),
               dividerColor: ColorName.whiteDark,
               controller: controller.tabController,
               tabs: [
@@ -209,7 +201,7 @@ class ProfilePage extends StatelessWidget {
                           : const Color(0xFFD7D7D9)),
                 ),
               ]),
-    ));
+        ));
   }
 
   /// Build tab view bio

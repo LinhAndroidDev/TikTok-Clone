@@ -6,6 +6,7 @@ import 'package:tiktok_clone/screens/root/root_binding.dart';
 import 'package:tiktok_clone/widget/loading/loading.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   Loading.configLoading();
   runApp(const MyApp());
 }

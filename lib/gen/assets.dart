@@ -224,6 +224,42 @@ class $AssetsImagesGen {
   SvgGenImage get icShareStroke =>
       const SvgGenImage('assets/images/ic_share_stroke.svg');
 
+  /// File path: assets/images/ic_beauty.svg
+  SvgGenImage get icBeauty =>
+      const SvgGenImage('assets/images/ic_beauty.svg');
+
+  /// File path: assets/images/ic_effects.svg
+  SvgGenImage get icEffects =>
+      const SvgGenImage('assets/images/ic_effects.svg');
+
+  /// File path: assets/images/ic_filters.svg
+  SvgGenImage get icFilters =>
+      const SvgGenImage('assets/images/ic_filters.svg');
+
+  /// File path: assets/images/ic_flash.svg
+  SvgGenImage get icFlash =>
+      const SvgGenImage('assets/images/ic_flash.svg');
+
+  /// File path: assets/images/ic_flip.svg
+  SvgGenImage get icFlip =>
+      const SvgGenImage('assets/images/ic_flip.svg');
+
+  /// File path: assets/images/ic_record.svg
+  SvgGenImage get icRecord =>
+      const SvgGenImage('assets/images/ic_record.svg');
+
+  /// File path: assets/images/ic_speed.svg
+  SvgGenImage get icSpeed =>
+      const SvgGenImage('assets/images/ic_speed.svg');
+
+  /// File path: assets/images/ic_timer.svg
+  SvgGenImage get icTimer =>
+      const SvgGenImage('assets/images/ic_timer.svg');
+
+  /// File path: assets/images/ic_upload_photo.svg
+  SvgGenImage get icUploadPhoto =>
+      const SvgGenImage('assets/images/ic_upload_photo.svg');
+
   List<dynamic> get values => [
     icAccountCheck,
     icAccountUnCheck,
@@ -280,6 +316,15 @@ class $AssetsImagesGen {
     icQrCode,
     icQuestion,
     icShareStroke,
+    icBeauty,
+    icEffects,
+    icFilters,
+    icFlash,
+    icFlip,
+    icRecord,
+    icSpeed,
+    icTimer,
+    icUploadPhoto
   ];
 }
 
