@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/gen/colors.dart';
 import 'package:tiktok_clone/routes/app_navigate.dart';
@@ -16,36 +17,40 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: _buildHeader(),
-        backgroundColor: ColorName.white,
-        surfaceTintColor: ColorName.white,
-        titleSpacing: 0,
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(0),
-          child: CustomDivider(),
+        appBar: AppBar(
+          title: _buildHeader(),
+          backgroundColor: ColorName.white,
+          surfaceTintColor: ColorName.white,
+          titleSpacing: 0,
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(0),
+            child: CustomDivider(),
+          ),
         ),
-      ),
-        body: NestedScrollView(
-      headerSliverBuilder: (context, innerBoxIsScrolled) {
-        return [
-          SliverToBoxAdapter(
-            child: Container(
-              color: ColorName.white,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  _buildContent()
-                ],
+        body: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Container(
+                color: ColorName.white,
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    _buildContent()
+                  ],
+                ),
               ),
             ),
-          )
-        ];
-      },
-      body: _buildTabViewBio(),
-    ));
+            SliverStickyHeader(
+              header: _buildTabBio(),
+              sliver: SliverFillRemaining(
+                  child: _buildTabViewBio()
+              ),
+            )
+          ],
+        )
+    );
   }
 
   /// Build header of profile
@@ -158,7 +163,6 @@ class ProfilePage extends StatelessWidget {
           height: 15,
         ),
         const CustomDivider(),
-        _buildTabBio()
       ],
     );
   }
@@ -179,30 +183,33 @@ class ProfilePage extends StatelessWidget {
 
   /// Build tab bio
   Widget _buildTabBio() {
-    return Obx(() => TabBar(
-            indicatorColor: ColorName.black,
-            indicatorSize: TabBarIndicatorSize.label,
-            labelColor: ColorName.black,
-            dividerColor: ColorName.whiteDark,
-            controller: controller.tabController,
-            tabs: [
-              Tab(
-                icon: Assets.images.icMenuAll.svg(
-                    width: 16,
-                    height: 16,
-                    color: controller.currentTab.value == 0
-                        ? ColorName.black
-                        : const Color(0xFFD7D7D9)),
-              ),
-              Tab(
-                icon: Assets.images.icFavouriteSaved.svg(
-                    width: 16,
-                    height: 16,
-                    color: controller.currentTab.value == 1
-                        ? ColorName.black
-                        : const Color(0xFFD7D7D9)),
-              ),
-            ]));
+    return Obx(() => Container(
+      color: ColorName.white,
+      child: TabBar(
+              indicatorColor: ColorName.black,
+              indicatorSize: TabBarIndicatorSize.label,
+              labelColor: ColorName.black,
+              dividerColor: ColorName.whiteDark,
+              controller: controller.tabController,
+              tabs: [
+                Tab(
+                  icon: Assets.images.icMenuAll.svg(
+                      width: 16,
+                      height: 16,
+                      color: controller.currentTab.value == 0
+                          ? ColorName.black
+                          : const Color(0xFFD7D7D9)),
+                ),
+                Tab(
+                  icon: Assets.images.icFavouriteSaved.svg(
+                      width: 16,
+                      height: 16,
+                      color: controller.currentTab.value == 1
+                          ? ColorName.black
+                          : const Color(0xFFD7D7D9)),
+                ),
+              ]),
+    ));
   }
 
   /// Build tab view bio
