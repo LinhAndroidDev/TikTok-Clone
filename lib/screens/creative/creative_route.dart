@@ -10,9 +10,9 @@ class CreativeRoute extends AppRouteable {
     return GetPageRoute(
       settings: settings,
       binding: CreativeBinding(),
-      page: () => const CreativePage(),
-      transition: Transition.fadeIn,
-      transitionDuration: const Duration(milliseconds: 300),
+      page: () => CreativePage(),
+      transition: Transition.noTransition,
+      transitionDuration: const Duration(milliseconds: 0),
     );
   }
 }

@@ -48,6 +48,12 @@ TextStyle textNormalBold = const TextStyle(
   color: Colors.black,
 );
 
+TextStyle text16 = const TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.w400,
+  color: Colors.black,
+);
+
 TextStyle text16Semibold = const TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.w500,

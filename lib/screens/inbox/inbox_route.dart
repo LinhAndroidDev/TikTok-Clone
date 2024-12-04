@@ -12,8 +12,8 @@ class InboxRoute extends AppRouteable {
       settings: settings,
       binding: InboxBinding(),
       page: () => const InboxPage(),
-      transition: Transition.fadeIn,
-      transitionDuration: const Duration(milliseconds: 300),
+      transition: Transition.noTransition,
+      transitionDuration: const Duration(milliseconds: 0),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/gen/colors.dart';
+import 'package:tiktok_clone/routes/app_navigate.dart';
 import 'package:tiktok_clone/style/text_style.dart';
 
 import '../../gen/assets.dart';
@@ -54,7 +55,9 @@ class InboxPage extends StatelessWidget {
         ),
         Positioned(
           right: 15,
-            child: Assets.images.icSend.svg(width: 20, height: 20))
+            child: InkWell(
+              onTap: () => AppNavigate.instance.gotoMessagePage(),
+                child: Assets.images.icSend.svg(width: 20, height: 20)))
       ],
     );
   }

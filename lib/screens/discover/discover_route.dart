@@ -12,8 +12,8 @@ class DiscoverRoute extends AppRouteable {
       settings: settings,
       binding: DiscoverBinding(),
       page: () => const DiscoverPage(),
-      transition: Transition.fadeIn,
-      transitionDuration: const Duration(milliseconds: 300),
+      transition: Transition.noTransition,
+      transitionDuration: const Duration(milliseconds: 0),
     );
   }
 }
