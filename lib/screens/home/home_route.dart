@@ -12,8 +12,8 @@ class HomeRoute extends AppRouteable {
       settings: settings,
       binding: HomeBinding(),
       page: () => HomePage(),
-      transition: Transition.fadeIn,
-      transitionDuration: const Duration(milliseconds: 300),
+      transition: Transition.noTransition,
+      transitionDuration: const Duration(milliseconds: 0),
     );
   }
 }

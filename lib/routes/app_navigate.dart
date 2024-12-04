@@ -83,8 +83,7 @@ extension AppNavigateScreen on AppNavigate {
   }
 
   Future<T> gotoCreativePage<T>() async {
-    selectedTab(BottomNavigationItem.creative);
-    return await offAllNamed(AppRoute.creative.rawValue);
+    return await toNamed(AppRoute.creative.rawValue);
   }
 
   Future<T> gotoInboxPage<T>() async {

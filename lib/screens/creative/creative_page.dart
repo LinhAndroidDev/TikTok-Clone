@@ -6,6 +6,7 @@ import 'package:tiktok_clone/screens/creative/creative_controller.dart';
 import 'package:tiktok_clone/style/text_style.dart';
 
 import '../../gen/assets.dart';
+import '../../widget/indicator_tabbar/indicator_tabbar.dart';
 
 class CreativePage extends StatelessWidget {
   CreativePage({super.key});
@@ -29,46 +30,33 @@ class CreativePage extends StatelessWidget {
         }
         return Container(
           color: ColorName.black,
-          child: Stack(
+          child: Column(
             children: [
-              Positioned.fill(
-                  top: 60,
-                  child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      ),
-                      child: CameraPreview(controller.cameraController!))),
-              const Positioned(
-                  left: 15,
-                  top: 100,
-                  child: Icon(Icons.close, size: 25, color: ColorName.white)),
-              Positioned(
-                top: 100,
-                right: 0,
-                left: 0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Assets.images.icMusic
-                        .svg(width: 13, height: 13, color: ColorName.white),
-                    const SizedBox(width: 5),
-                    Text('Sounds', style: textNormalSemibold),
-                  ],
-                ),
-              ),
-              Positioned(
-                  top: 100,
-                  right: 15,
-                  child: IntrinsicWidth(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: _buildFeatureCamera(),
-                    ),
-                  )),
-              Positioned(
-                  bottom: 40, left: 0, right: 0,
-                  child: _buildFooterCamera())
+              Expanded(child: Stack(
+                children: [
+                  Positioned.fill(
+                      top: 60,
+                      left: 7,
+                      right: 7,
+                      child: ClipRRect(
+                          borderRadius: const BorderRadius.all(Radius.circular(20)),
+                          child: CameraPreview(controller.cameraController!))),
+                  ..._buildHeader(),
+                  Positioned(
+                      top: 80,
+                      right: 15,
+                      child: IntrinsicWidth(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: _buildFeatureCamera(),
+                        ),
+                      )),
+                  Positioned(
+                      bottom: 40, left: 0, right: 0,
+                      child: _buildFooterCamera())
+                ],
+              )),
+              _buildTabBarFooter(context)
             ],
           ),
         );
@@ -76,6 +64,33 @@ class CreativePage extends StatelessWidget {
     );
   }
 
+  /// Build header camera
+  List<Widget> _buildHeader() {
+    return [
+      Positioned(
+          left: 20,
+          top: 80,
+          child: InkWell(
+            onTap: () => Get.back(),
+              child: const Icon(Icons.close, size: 25, color: ColorName.white))),
+      Positioned(
+        top: 80,
+        right: 0,
+        left: 0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Assets.images.icMusic
+                .svg(width: 13, height: 13, color: ColorName.white),
+            const SizedBox(width: 5),
+            Text('Sounds', style: textNormalSemibold),
+          ],
+        ),
+      ),
+    ];
+  }
+
+  /// Build feature camera
   List<Widget> _buildFeatureCamera() {
     return [
       _buildItemFeature(icon: Assets.images.icFlip, title: 'Flip'),
@@ -87,6 +102,7 @@ class CreativePage extends StatelessWidget {
     ];
   }
 
+  /// Build item feature
   Widget _buildItemFeature({required SvgGenImage icon, required String title}) {
     return Column(
       children: [
@@ -103,6 +119,7 @@ class CreativePage extends StatelessWidget {
     );
   }
 
+  /// Build footer camera
   Widget _buildFooterCamera() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -125,6 +142,34 @@ class CreativePage extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+
+  /// Build tab bar footer
+  Widget _buildTabBarFooter(BuildContext context) {
+    return Container(
+      color: ColorName.black,
+      width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.only(top: 20, bottom: 30),
+      child: TabBar(
+          tabAlignment: TabAlignment.center,
+          indicator: const FixedWidthIndicator(color: ColorName.white, width: 0.5, thickness: 5),
+          isScrollable: true,
+          controller: controller.tabController,
+          dividerColor: Colors.transparent,
+          labelStyle: textNormalSemibold.copyWith(color: ColorName.white),
+          unselectedLabelStyle: textNormalSemibold.copyWith(color: ColorName.grey),
+          tabs: const [
+            Tab(
+              text: '60s',
+            ),
+            Tab(
+              text: '15s',
+            ),
+            Tab(
+              text: 'Templates',
+            ),
+          ]),
     );
   }
 }
