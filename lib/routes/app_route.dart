@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/screens/creative/creative_route.dart';
 import 'package:tiktok_clone/screens/discover/discover_route.dart';
+import 'package:tiktok_clone/screens/edit_profile/edit_profile_route.dart';
 import 'package:tiktok_clone/screens/home/home_route.dart';
 import 'package:tiktok_clone/screens/inbox/inbox_route.dart';
+import 'package:tiktok_clone/screens/message/message_route.dart';
 import 'package:tiktok_clone/screens/profile/profile_route.dart';
 import 'package:tiktok_clone/screens/root/root_route.dart';
+import 'package:tiktok_clone/screens/setting/setting_route.dart';
 
 abstract class AppRouteable<T> {
   Route createRoute(RouteSettings settings) {
@@ -19,7 +22,10 @@ enum AppRoute {
   discover('/discover'),
   creative('/creative'),
   inbox('/inbox'),
-  profile('/profile');
+  profile('/profile'),
+  message('/message'),
+  editProfile('/edit_profile'),
+  setting('/setting');
 
   const AppRoute(this.rawValue);
 
@@ -46,6 +52,12 @@ enum AppRoute {
         return InboxRoute().createRoute(settings);
       case AppRoute.profile:
         return ProfileRoute().createRoute(settings);
+      case AppRoute.message:
+        return MessageRoute().createRoute(settings);
+      case AppRoute.editProfile:
+        return EditProfileRoute().createRoute(settings);
+      case AppRoute.setting:
+        return SettingRoute().createRoute(settings);
     }
   }
 

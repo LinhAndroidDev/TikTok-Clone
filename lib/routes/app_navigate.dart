@@ -83,8 +83,7 @@ extension AppNavigateScreen on AppNavigate {
   }
 
   Future<T> gotoCreativePage<T>() async {
-    selectedTab(BottomNavigationItem.creative);
-    return await offAllNamed(AppRoute.creative.rawValue);
+    return await toNamed(AppRoute.creative.rawValue);
   }
 
   Future<T> gotoInboxPage<T>() async {
@@ -95,5 +94,17 @@ extension AppNavigateScreen on AppNavigate {
   Future<T> gotoProfilePage<T>() async {
     selectedTab(BottomNavigationItem.profile);
     return await offAllNamed(AppRoute.profile.rawValue);
+  }
+
+  Future<T> gotoMessagePage<T>() async {
+    return await toNamed(AppRoute.message.rawValue);
+  }
+
+  Future<T> gotoEditProfilePage<T>() async {
+    return await toNamed(AppRoute.editProfile.rawValue);
+  }
+
+  Future<T> gotoSettingPage<T>() async {
+    return await toNamed(AppRoute.setting.rawValue);
   }
 }

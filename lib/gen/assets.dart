@@ -48,14 +48,6 @@ class $AssetsImagesGen {
   SvgGenImage get icSearchUnCheck =>
       const SvgGenImage('assets/images/ic_search_uncheck.svg');
 
-  /// File path: assets/images/avatar1.png
-  AssetGenImage get avatar1 =>
-      const AssetGenImage('assets/images/avatar1.png');
-
-  /// File path: assets/images/avatar2.png
-  AssetGenImage get avatar2 =>
-      const AssetGenImage('assets/images/avatar2.png');
-
   /// File path: assets/images/ic_favourite.svg
   SvgGenImage get icFavourite =>
       const SvgGenImage('assets/images/ic_favourite.svg');
@@ -76,21 +68,9 @@ class $AssetsImagesGen {
   SvgGenImage get icShare =>
       const SvgGenImage('assets/images/ic_share.svg');
 
-  /// File path: assets/images/video1.png
-  AssetGenImage get video1 =>
-      const AssetGenImage('assets/images/video1.png');
-
-  /// File path: assets/images/video2.png
-  AssetGenImage get video2 =>
-      const AssetGenImage('assets/images/video2.png');
-
   /// File path: assets/images/ic_disc.svg
   SvgGenImage get icDisc =>
       const SvgGenImage('assets/images/ic_disc.svg');
-
-  /// File path: assets/images/ic_avatar_music.png
-  AssetGenImage get icAvatarMusic =>
-      const AssetGenImage('assets/images/ic_avatar_music.png');
 
   /// File path: assets/images/ic_emotion.svg
   SvgGenImage get icEmotion =>
@@ -176,6 +156,109 @@ class $AssetsImagesGen {
   SvgGenImage get icSaveThick =>
       const SvgGenImage('assets/images/ic_save_thick.svg');
 
+  /// File path: assets/images/ic_send_thin.svg
+  SvgGenImage get icSendThin =>
+      const SvgGenImage('assets/images/ic_send_thin.svg');
+
+  /// File path: assets/images/ic_camera.svg
+  SvgGenImage get icCamera =>
+      const SvgGenImage('assets/images/ic_camera.svg');
+
+  /// File path: assets/images/ic_video.svg
+  SvgGenImage get icVideo =>
+      const SvgGenImage('assets/images/ic_video.svg');
+
+  /// File path: assets/images/ic_copy.svg
+  SvgGenImage get icCopy =>
+      const SvgGenImage('assets/images/ic_copy.svg');
+
+  /// File path: assets/images/ic_scan.svg
+  SvgGenImage get icScan =>
+      const SvgGenImage('assets/images/ic_scan.svg');
+
+  /// File path: assets/images/ic_invite_friend.svg
+  SvgGenImage get icInviteFriend =>
+      const SvgGenImage('assets/images/ic_invite_friend.svg');
+
+  /// File path: assets/images/ic_accessibility.svg
+  SvgGenImage get icAccessibility =>
+      const SvgGenImage('assets/images/ic_accessibility.svg');
+
+  /// File path: assets/images/ic_balance.svg
+  SvgGenImage get icBalance =>
+      const SvgGenImage('assets/images/ic_balance.svg');
+
+  /// File path: assets/images/ic_data_saver.svg
+  SvgGenImage get icDataSaver =>
+      const SvgGenImage('assets/images/ic_data_saver.svg');
+
+  /// File path: assets/images/ic_digital.svg
+  SvgGenImage get icDigital =>
+      const SvgGenImage('assets/images/ic_digital.svg');
+
+  /// File path: assets/images/ic_language.svg
+  SvgGenImage get icLanguage =>
+      const SvgGenImage('assets/images/ic_language.svg');
+
+  /// File path: assets/images/ic_lock.svg
+  SvgGenImage get icLock =>
+      const SvgGenImage('assets/images/ic_lock.svg');
+
+  /// File path: assets/images/ic_notification.svg
+  SvgGenImage get icNotification =>
+      const SvgGenImage('assets/images/ic_notification.svg');
+
+  /// File path: assets/images/ic_problem.svg
+  SvgGenImage get icProblem =>
+      const SvgGenImage('assets/images/ic_problem.svg');
+
+  /// File path: assets/images/ic_qr_code.svg
+  SvgGenImage get icQrCode =>
+      const SvgGenImage('assets/images/ic_qr_code.svg');
+
+  /// File path: assets/images/ic_question.svg
+  SvgGenImage get icQuestion =>
+      const SvgGenImage('assets/images/ic_question.svg');
+
+  /// File path: assets/images/ic_share_stroke.svg
+  SvgGenImage get icShareStroke =>
+      const SvgGenImage('assets/images/ic_share_stroke.svg');
+
+  /// File path: assets/images/ic_beauty.svg
+  SvgGenImage get icBeauty =>
+      const SvgGenImage('assets/images/ic_beauty.svg');
+
+  /// File path: assets/images/ic_effects.svg
+  SvgGenImage get icEffects =>
+      const SvgGenImage('assets/images/ic_effects.svg');
+
+  /// File path: assets/images/ic_filters.svg
+  SvgGenImage get icFilters =>
+      const SvgGenImage('assets/images/ic_filters.svg');
+
+  /// File path: assets/images/ic_flash.svg
+  SvgGenImage get icFlash =>
+      const SvgGenImage('assets/images/ic_flash.svg');
+
+  /// File path: assets/images/ic_flip.svg
+  SvgGenImage get icFlip =>
+      const SvgGenImage('assets/images/ic_flip.svg');
+
+  /// File path: assets/images/ic_record.svg
+  SvgGenImage get icRecord =>
+      const SvgGenImage('assets/images/ic_record.svg');
+
+  /// File path: assets/images/ic_speed.svg
+  SvgGenImage get icSpeed =>
+      const SvgGenImage('assets/images/ic_speed.svg');
+
+  /// File path: assets/images/ic_timer.svg
+  SvgGenImage get icTimer =>
+      const SvgGenImage('assets/images/ic_timer.svg');
+
+  /// File path: assets/images/ic_upload_photo.svg
+  SvgGenImage get icUploadPhoto =>
+      const SvgGenImage('assets/images/ic_upload_photo.svg');
 
   List<dynamic> get values => [
     icAccountCheck,
@@ -189,17 +272,12 @@ class $AssetsImagesGen {
     icInboxThin,
     icSearchCheck,
     icSearchUnCheck,
-    avatar1,
-    avatar2,
     icFavourite,
     icFavouriteStroke,
     icMessage,
     icMusic,
     icShare,
-    video1,
-    video2,
     icDisc,
-    icAvatarMusic,
     icEmotion,
     icTag,
     icSend,
@@ -221,6 +299,32 @@ class $AssetsImagesGen {
     icFavouriteSaved,
     icMenuAll,
     icSaveThick,
+    icSendThin,
+    icCamera,
+    icVideo,
+    icCopy,
+    icScan,
+    icInviteFriend,
+    icAccessibility,
+    icBalance,
+    icDataSaver,
+    icDigital,
+    icLanguage,
+    icLock,
+    icNotification,
+    icProblem,
+    icQrCode,
+    icQuestion,
+    icShareStroke,
+    icBeauty,
+    icEffects,
+    icFilters,
+    icFlash,
+    icFlip,
+    icRecord,
+    icSpeed,
+    icTimer,
+    icUploadPhoto
   ];
 }
 

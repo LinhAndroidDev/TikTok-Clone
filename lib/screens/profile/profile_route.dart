@@ -12,8 +12,8 @@ class ProfileRoute extends AppRouteable {
       settings: settings,
       binding: ProfileBinding(),
       page: () => ProfilePage(),
-      transition: Transition.fadeIn,
-      transitionDuration: const Duration(milliseconds: 300),
+      transition: Transition.noTransition,
+      transitionDuration: const Duration(milliseconds: 0),
     );
   }
 }
