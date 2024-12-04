@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/gen/colors.dart';
 import 'package:tiktok_clone/model/video_model.dart';
+import 'package:tiktok_clone/screens/home/widgets/video_play_item.dart';
 import 'package:tiktok_clone/style/text_style.dart';
 import 'package:tiktok_clone/utils/utils.dart';
 import 'package:tiktok_clone/widget/circle_animation.dart';
 
 import '../../../gen/assets.dart';
-import 'video_play_item.dart';
 
 class TextController extends GetxController {
   var textExpand = ''.obs;

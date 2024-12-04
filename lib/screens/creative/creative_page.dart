@@ -18,28 +18,27 @@ class CreativePage extends StatelessWidget {
     return Scaffold(
       body: Obx(() {
         if (!controller.isCameraInitialized.value) {
-          return Center(
-            child: controller.errorMessage.value.isEmpty
-                ? Container(
-                    color: ColorName.black,
-                    width: double.infinity,
-                    height: double.infinity,
-                  )
-                : Text(controller.errorMessage.value),
+          return Container(
+            color: ColorName.black,
+            width: double.infinity,
+            height: double.infinity,
           );
         }
+
         return Container(
           color: ColorName.black,
           child: Column(
             children: [
-              Expanded(child: Stack(
+              Expanded(
+                  child: Stack(
                 children: [
                   Positioned.fill(
                       top: 60,
                       left: 7,
                       right: 7,
                       child: ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(20)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20)),
                           child: CameraPreview(controller.cameraController!))),
                   ..._buildHeader(),
                   Positioned(
@@ -52,7 +51,9 @@ class CreativePage extends StatelessWidget {
                         ),
                       )),
                   Positioned(
-                      bottom: 40, left: 0, right: 0,
+                      bottom: 40,
+                      left: 0,
+                      right: 0,
                       child: _buildFooterCamera())
                 ],
               )),
@@ -71,8 +72,9 @@ class CreativePage extends StatelessWidget {
           left: 20,
           top: 80,
           child: InkWell(
-            onTap: () => Get.back(),
-              child: const Icon(Icons.close, size: 25, color: ColorName.white))),
+              onTap: () => Get.back(),
+              child:
+                  const Icon(Icons.close, size: 25, color: ColorName.white))),
       Positioned(
         top: 80,
         right: 0,
@@ -128,8 +130,13 @@ class CreativePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Assets.images.icEffects.svg(width: 33, height: 33),
-            const SizedBox(height: 2,),
-            Text('Effects', style: textSmallSemibold,)
+            const SizedBox(
+              height: 2,
+            ),
+            Text(
+              'Effects',
+              style: textSmallSemibold,
+            )
           ],
         ),
         Assets.images.icRecord.svg(width: 80, height: 80),
@@ -137,10 +144,15 @@ class CreativePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             InkWell(
-              onTap: () => controller.pickImageFromGallery(),
+                onTap: () => controller.pickImageFromGallery(),
                 child: Assets.images.icUploadPhoto.svg(width: 33, height: 33)),
-            const SizedBox(height: 5,),
-            Text('Upload', style: textSmallSemibold,)
+            const SizedBox(
+              height: 5,
+            ),
+            Text(
+              'Upload',
+              style: textSmallSemibold,
+            )
           ],
         ),
       ],
@@ -155,12 +167,14 @@ class CreativePage extends StatelessWidget {
       padding: const EdgeInsets.only(top: 20, bottom: 30),
       child: TabBar(
           tabAlignment: TabAlignment.center,
-          indicator: const FixedWidthIndicator(color: ColorName.white, width: 0.5, thickness: 5),
+          indicator: const FixedWidthIndicator(
+              color: ColorName.white, width: 0.5, thickness: 5),
           isScrollable: true,
           controller: controller.tabController,
           dividerColor: Colors.transparent,
           labelStyle: textNormalSemibold.copyWith(color: ColorName.white),
-          unselectedLabelStyle: textNormalSemibold.copyWith(color: ColorName.grey),
+          unselectedLabelStyle:
+              textNormalSemibold.copyWith(color: ColorName.grey),
           tabs: const [
             Tab(
               text: '60s',
