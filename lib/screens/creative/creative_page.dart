@@ -136,7 +136,9 @@ class CreativePage extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Assets.images.icUploadPhoto.svg(width: 33, height: 33),
+            InkWell(
+              onTap: () => controller.pickImageFromGallery(),
+                child: Assets.images.icUploadPhoto.svg(width: 33, height: 33)),
             const SizedBox(height: 5,),
             Text('Upload', style: textSmallSemibold,)
           ],
