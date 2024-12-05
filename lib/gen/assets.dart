@@ -260,6 +260,10 @@ class $AssetsImagesGen {
   SvgGenImage get icUploadPhoto =>
       const SvgGenImage('assets/images/ic_upload_photo.svg');
 
+  /// File path: assets/images/ic_map.svg
+  SvgGenImage get icMap =>
+      const SvgGenImage('assets/images/ic_map.svg');
+
   List<dynamic> get values => [
     icAccountCheck,
     icAccountUnCheck,
@@ -324,7 +328,8 @@ class $AssetsImagesGen {
     icRecord,
     icSpeed,
     icTimer,
-    icUploadPhoto
+    icUploadPhoto,
+    icMap
   ];
 }
 

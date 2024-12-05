@@ -26,6 +26,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
         useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          elevation: 5, // Đặt elevation cho AppBar
+          color: Colors.white, // Đảm bảo có màu nền
+        ),
       ),
       builder: EasyLoading.init(),
     );

@@ -5,6 +5,7 @@ import 'package:tiktok_clone/screens/discover/discover_route.dart';
 import 'package:tiktok_clone/screens/edit_profile/edit_profile_route.dart';
 import 'package:tiktok_clone/screens/home/home_route.dart';
 import 'package:tiktok_clone/screens/inbox/inbox_route.dart';
+import 'package:tiktok_clone/screens/map/map_route.dart';
 import 'package:tiktok_clone/screens/message/message_route.dart';
 import 'package:tiktok_clone/screens/profile/profile_route.dart';
 import 'package:tiktok_clone/screens/root/root_route.dart';
@@ -25,7 +26,8 @@ enum AppRoute {
   profile('/profile'),
   message('/message'),
   editProfile('/edit_profile'),
-  setting('/setting');
+  setting('/setting'),
+  map('/map');
 
   const AppRoute(this.rawValue);
 
@@ -58,6 +60,8 @@ enum AppRoute {
         return EditProfileRoute().createRoute(settings);
       case AppRoute.setting:
         return SettingRoute().createRoute(settings);
+      case AppRoute.map:
+        return MapRoute().createRoute(settings);
     }
   }
 

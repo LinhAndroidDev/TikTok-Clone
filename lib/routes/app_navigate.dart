@@ -107,4 +107,8 @@ extension AppNavigateScreen on AppNavigate {
   Future<T> gotoSettingPage<T>() async {
     return await toNamed(AppRoute.setting.rawValue);
   }
+
+  Future<T> gotoMapPage<T>() async {
+    return await toNamed(AppRoute.map.rawValue);
+  }
 }

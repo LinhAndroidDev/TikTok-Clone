@@ -94,9 +94,18 @@ class ProfilePage extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        Text(
-          '@jacob_w',
-          style: textNormalSemibold.copyWith(color: ColorName.black),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              '@jacob_w',
+              style: textNormalSemibold.copyWith(color: ColorName.black),
+            ),
+            InkWell(
+              onTap: () => AppNavigate.instance.gotoMapPage(),
+                child: Assets.images.icMap.svg(width: 30, height: 30))
+          ],
         ),
         const SizedBox(
           height: 15,
