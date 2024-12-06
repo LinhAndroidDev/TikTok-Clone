@@ -26,7 +26,7 @@ class Loading {
       ..contentPadding = const EdgeInsets.all(30)
       ..radius = 15
       ..indicatorSize = 50
-      ..maskType = EasyLoadingMaskType.none
+      ..maskType = EasyLoadingMaskType.clear
       ..indicatorType = EasyLoadingIndicatorType.circle
       ..loadingStyle = EasyLoadingStyle.custom
       ..backgroundColor = ColorName.white
