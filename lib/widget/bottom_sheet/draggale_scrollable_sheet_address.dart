@@ -9,10 +9,37 @@ import '../../style/text_style.dart';
 class DraggableSheetController extends GetxController {
   final DraggableScrollableController draggableScrollableController = DraggableScrollableController();
   final currentExtent = 0.2.obs;
+  final isExpanded = false.obs;
+  final showTabClose = false.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    draggableScrollableController.addListener(() {
+      if (draggableScrollableController.size > 0.2) {
+        showTabClose.value = true;
+      } else {
+        showTabClose.value = false;
+      }
+      if (draggableScrollableController.size == 1) {
+        isExpanded.value = true;
+      } else if(draggableScrollableController.size == 0.2) {
+        isExpanded.value = false;
+      }
+    });
+  }
 
   void collapseSheet() {
     draggableScrollableController.animateTo(
       0.2,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void expandSheet() {
+    draggableScrollableController.animateTo(
+      1,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
@@ -23,8 +50,9 @@ class DraggaleScrollableSheetAddress extends StatelessWidget {
   DraggaleScrollableSheetAddress({super.key, required this.listAddress, required this.onSelected});
 
   final List<AddressModel> listAddress;
+  final Function(AddressModel) onSelected;
+
   final controller = Get.put(DraggableSheetController());
-  final ValueChanged<AddressModel> onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +68,14 @@ class DraggaleScrollableSheetAddress extends StatelessWidget {
               controller: scrollController,
               slivers: [
                 // SliverPersistentHeader
-                SliverPersistentHeader(
-                  delegate: MySliverHeaderDelegate(
-                      onTabClose: () => controller.collapseSheet()),
-                  pinned: true,
-                ),
+                Obx(() => SliverPersistentHeader(
+                      delegate: MySliverHeaderDelegate(
+                          onTabClose: () => controller.collapseSheet(),
+                          isExpanded: controller.isExpanded.value,
+                          expand: () => controller.expandSheet(),
+                          showTabClose: controller.showTabClose.value),
+                      pinned: true,
+                    )),
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                         (context, index) {
@@ -92,8 +123,15 @@ class MySliverHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 50.0; // Chiều cao tối đa khi không cuộn
 
   final VoidCallback onTabClose;
+  final VoidCallback expand;
+  final bool isExpanded;
+  final bool showTabClose;
 
-  MySliverHeaderDelegate({required this.onTabClose});
+  MySliverHeaderDelegate(
+      {required this.onTabClose,
+      required this.expand,
+      required this.isExpanded,
+      required this.showTabClose});
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -117,15 +155,27 @@ class MySliverHeaderDelegate extends SliverPersistentHeaderDelegate {
             style: text16bold,
           ),
         ),
+        Positioned(
+            left: 15,
+            child: InkWell(
+              onTap: () {
+                (isExpanded) ? onTabClose.call() : expand.call();
+              },
+              child: RotatedBox(
+                  quarterTurns: (isExpanded) ? 135 : 45,
+                  child: const Icon(Icons.arrow_back_ios_new_sharp, size: 20, color: ColorName.grey,)),
+            )),
         Positioned(right: 15, child: InkWell(
             onTap: () => onTabClose.call(),
-            child: const Icon(Icons.close, size: 25, color: ColorName.black,))),
+            child: Visibility(
+              visible: showTabClose,
+                child: const Icon(Icons.close, size: 25, color: ColorName.black,)))),
       ],
     );
   }
 
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
+    return true;
   }
 }
