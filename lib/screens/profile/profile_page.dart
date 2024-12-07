@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/gen/colors.dart';
 import 'package:tiktok_clone/routes/app_navigate.dart';
@@ -9,6 +8,7 @@ import 'package:tiktok_clone/widget/indicator_tabbar/indicator_tabbar.dart';
 
 import '../../gen/assets.dart';
 import '../../style/text_style.dart';
+import '../../widget/sticky_header/sliver_header_delegate.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -28,20 +28,39 @@ class ProfilePage extends StatelessWidget {
             child: CustomDivider(),
           ),
         ),
-        body: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Container(
-                color: ColorName.white,
-                child: _buildContent(),
+        body: _buildBody());
+  }
+
+  ///Build body of profile
+  Widget _buildBody() {
+    return NestedScrollView(
+      headerSliverBuilder: (context, innerBoxIsScrolled) {
+        return [
+          SliverToBoxAdapter(
+            child: Container(
+              color: ColorName.white,
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _buildContent()
+                ],
               ),
             ),
-            SliverStickyHeader(
-              header: _buildTabBio(),
-              sliver: SliverFillRemaining(child: _buildTabViewBio()),
-            )
-          ],
-        ));
+          ),
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: SliverHeaderDelegate(
+              minHeight: 48,
+              maxHeight: 48,
+              child: _buildTabBio(),
+            ),
+          ),
+        ];
+      },
+      body: _buildTabViewBio(),
+    );
   }
 
   /// Build header of profile
@@ -87,76 +106,8 @@ class ProfilePage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(
-          height: 20,
-        ),
-        Assets.images.avatarProfile.image(width: 96, height: 96),
-        const SizedBox(
-          height: 10,
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              '@jacob_w',
-              style: textNormalSemibold.copyWith(color: ColorName.black),
-            ),
-            InkWell(
-              onTap: () => AppNavigate.instance.gotoMapPage(),
-                child: Assets.images.icMap.svg(width: 30, height: 30))
-          ],
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const SizedBox(
-              width: 20,
-            ),
-            _itemDetailProfile(quantity: 14, title: 'Following'),
-            _itemDetailProfile(quantity: 38, title: 'Followers'),
-            _itemDetailProfile(quantity: 91, title: 'Likes'),
-            const SizedBox(
-              width: 20,
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            InkWell(
-              onTap: () => AppNavigate.instance.gotoEditProfilePage(),
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-                decoration: BoxDecoration(
-                    border:
-                        Border.all(color: const Color(0xFFE3E3E4), width: 1),
-                    borderRadius: BorderRadius.circular(3)),
-                child: Text(
-                  'Edit Profile',
-                  style: textNormalSemibold.copyWith(color: ColorName.black),
-                ),
-              ),
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
-              decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xFFE3E3E4), width: 1),
-                  borderRadius: BorderRadius.circular(3)),
-              child: Assets.images.icSaveThick.svg(width: 22, height: 22),
-            )
-          ],
-        ),
+        ..._buildInformationUser(),
+        _buildEditProfile(),
         const SizedBox(
           height: 15,
         ),
@@ -166,6 +117,85 @@ class ProfilePage extends StatelessWidget {
           height: 15,
         ),
         const CustomDivider(),
+      ],
+    );
+  }
+
+  /// Build information
+  List<Widget> _buildInformationUser() {
+    return [
+      const SizedBox(
+        height: 20,
+      ),
+      Assets.images.avatarProfile.image(width: 96, height: 96),
+      const SizedBox(
+        height: 10,
+      ),
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '@jacob_w',
+            style: textNormalSemibold.copyWith(color: ColorName.black),
+          ),
+          InkWell(
+              onTap: () => AppNavigate.instance.gotoMapPage(),
+              child: Assets.images.icMap.svg(width: 30, height: 30))
+        ],
+      ),
+      const SizedBox(
+        height: 15,
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          const SizedBox(
+            width: 20,
+          ),
+          _itemDetailProfile(quantity: 14, title: 'Following'),
+          _itemDetailProfile(quantity: 38, title: 'Followers'),
+          _itemDetailProfile(quantity: 91, title: 'Likes'),
+          const SizedBox(
+            width: 20,
+          ),
+        ],
+      ),
+      const SizedBox(
+        height: 15,
+      ),
+    ];
+  }
+
+  Widget _buildEditProfile() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        InkWell(
+          onTap: () => AppNavigate.instance.gotoEditProfilePage(),
+          child: Container(
+            padding:
+            const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+            decoration: BoxDecoration(
+                border:
+                Border.all(color: const Color(0xFFE3E3E4), width: 1),
+                borderRadius: BorderRadius.circular(3)),
+            child: Text(
+              'Edit Profile',
+              style: textNormalSemibold.copyWith(color: ColorName.black),
+            ),
+          ),
+        ),
+        const SizedBox(
+          width: 5,
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+          decoration: BoxDecoration(
+              border: Border.all(color: const Color(0xFFE3E3E4), width: 1),
+              borderRadius: BorderRadius.circular(3)),
+          child: Assets.images.icSaveThick.svg(width: 22, height: 22),
+        )
       ],
     );
   }
