@@ -1,64 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:tiktok_clone/model/address_model.dart';
 import 'package:tiktok_clone/widget/divider/divider.dart';
 
 import '../../gen/colors.dart';
 import '../../style/text_style.dart';
 
-class DraggableSheetController extends GetxController {
-  final DraggableScrollableController draggableScrollableController = DraggableScrollableController();
-  final currentExtent = 0.2.obs;
-  final isExpanded = false.obs;
-  final showTabClose = false.obs;
-
-  @override
-  void onInit() {
-    super.onInit();
-    draggableScrollableController.addListener(() {
-      if (draggableScrollableController.size > 0.2) {
-        showTabClose.value = true;
-      } else {
-        showTabClose.value = false;
-      }
-      if (draggableScrollableController.size == 1) {
-        isExpanded.value = true;
-      } else if(draggableScrollableController.size == 0.2) {
-        isExpanded.value = false;
-      }
-    });
-  }
-
-  void collapseSheet() {
-    draggableScrollableController.animateTo(
-      0.2,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
-  }
-
-  void expandSheet() {
-    draggableScrollableController.animateTo(
-      1,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
-  }
-}
-
 class DraggaleScrollableSheetAddress extends StatelessWidget {
-  DraggaleScrollableSheetAddress({super.key, required this.listAddress, required this.onSelected});
+  const DraggaleScrollableSheetAddress({
+    super.key,
+    required this.listAddress,
+    required this.onSelected,
+    required this.currentExtent,
+    required this.isExpanded,
+    required this.collapseSheet,
+    required this.expandSheet,
+    required this.controller,
+    required this.showTabClose});
 
   final List<AddressModel> listAddress;
   final Function(AddressModel) onSelected;
+  final double currentExtent;
+  final bool isExpanded;
+  final VoidCallback collapseSheet;
+  final VoidCallback expandSheet;
+  final bool showTabClose;
 
-  final controller = Get.put(DraggableSheetController());
+  final DraggableScrollableController controller;
 
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
-        controller: controller.draggableScrollableController,
-        initialChildSize: controller.currentExtent.value,
+        controller: controller,
+        initialChildSize: currentExtent,
         minChildSize: 0.2,
         maxChildSize: 1,
         builder: (context, scrollController) {
@@ -68,14 +41,14 @@ class DraggaleScrollableSheetAddress extends StatelessWidget {
               controller: scrollController,
               slivers: [
                 // SliverPersistentHeader
-                Obx(() => SliverPersistentHeader(
-                      delegate: MySliverHeaderDelegate(
-                          onTabClose: () => controller.collapseSheet(),
-                          isExpanded: controller.isExpanded.value,
-                          expand: () => controller.expandSheet(),
-                          showTabClose: controller.showTabClose.value),
-                      pinned: true,
-                    )),
+                SliverPersistentHeader(
+                  delegate: MySliverHeaderDelegate(
+                      onTabClose: () => collapseSheet.call(),
+                      isExpanded: isExpanded,
+                      expand: () => expandSheet.call(),
+                      showTabClose: showTabClose),
+                  pinned: true,
+                ),
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                         (context, index) {
@@ -83,7 +56,7 @@ class DraggaleScrollableSheetAddress extends StatelessWidget {
                       return InkWell(
                         onTap: () {
                           onSelected.call(address);
-                          controller.collapseSheet();
+                          collapseSheet.call();
                         },
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 15),

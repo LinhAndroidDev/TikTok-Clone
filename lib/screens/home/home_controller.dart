@@ -4,14 +4,11 @@ import 'package:tiktok_clone/model/comment_model.dart';
 import 'package:tiktok_clone/model/video_model.dart';
 import 'package:tiktok_clone/net_work/video_repository.dart';
 import 'package:tiktok_clone/widget/loading/loading.dart';
-import 'package:video_player/video_player.dart';
 
 class HomeController extends GetxController with GetSingleTickerProviderStateMixin {
   late TabController tabController;
   final pageController = PageController();
-  final List<VideoPlayerController> videoControllers = [];
   final videos = <VideoModel>[].obs;
-  final currentPage = 0.obs;
 
   final comments = [
     CommentModel(avatar: 'https://firebasestorage.googleapis.com/v0/b/realtime-64f58.appspot.com/o/tiktok_image%2FEllipse%205%20(1).png?alt=media&token=125ee31b-1a55-4ecd-8f72-164c0894c1e9', nameCommenter: 'martini_rond', detail: 'How neatly I write the date in my book', time: '22h', likeCount: 8098, repliesCount: 4),
@@ -43,23 +40,6 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
       Get.snackbar('Fail', e.toString());
     } finally {
       await Loading.dismiss();
-    }
-  }
-
-  @override
-  void onClose() {
-    for(var controller in videoControllers) {
-      controller.dispose();
-    }
-    super.onClose();
-  }
-
-  void stopOrPlayVideo() {
-    final isPlaying = videoControllers[currentPage.value].value.isPlaying;
-    if (isPlaying) {
-      videoControllers[currentPage.value].pause();
-    } else {
-      videoControllers[currentPage.value].play();
     }
   }
 

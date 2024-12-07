@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -17,6 +18,10 @@ class MapController extends GetxController {
   
   final listAddress = <AddressModel>[];
   final markersCurrent = <Marker>{}.obs;
+  final DraggableScrollableController draggableScrollableController = DraggableScrollableController();
+  final currentExtent = 0.2.obs;
+  final isExpanded = false.obs;
+  final showTabClose = false.obs;
 
   Future<void> goToTheAddress({required AddressModel address}) async {
     final kLake = CameraPosition(
@@ -48,6 +53,22 @@ class MapController extends GetxController {
     listAddress.add(AddressModel(id: 8, name: 'Vườn Quốc gia Ba Vì', position: 'Ba Vì, Hà Nội, Việt Nam', latitude: 21.08130138826786, longitude: 105.36266630871366,));
     listAddress.add(AddressModel(id: 9, name: 'Bản người Mông Nguyên Thủy', position: 'Mường Sang, Mộc Châu, Sơn La, Việt Nam', latitude: 20.91734630109203, longitude: 104.58984652646613,));
     listAddress.add(AddressModel(id: 10, name: 'Sống Lưng Khủng Long - điểm Săn Mây', position: 'Háng Đồng, Bắc Yên, Sơn La, Việt Nam', latitude: 21.30470122382371, longitude: 104.46408699522557,));
+    draggableScrollableController.addListener(() {
+      if (draggableScrollableController.size > 0.2) {
+        print('MapController: showTabClose');
+        showTabClose.value = true;
+      } else {
+        print('MapController: closeTabClose');
+        showTabClose.value = false;
+      }
+      if (draggableScrollableController.size == 1) {
+        print('MapController: expandSheet');
+        isExpanded.value = true;
+      } else if(draggableScrollableController.size == 0.2) {
+        print('MapController: closeSheet');
+        isExpanded.value = false;
+      }
+    });
     gotoMyLocation();
     super.onInit();
   }
@@ -108,5 +129,21 @@ class MapController extends GetxController {
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition();
+  }
+
+  void collapseSheet() {
+    draggableScrollableController.animateTo(
+      0.2,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void expandSheet() {
+    draggableScrollableController.animateTo(
+      1,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
   }
 }

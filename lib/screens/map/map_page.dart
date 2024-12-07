@@ -29,9 +29,9 @@ class MapPage extends StatelessWidget {
         ),
         elevation: 10,
       ),
-      body: Stack(
+      body: Obx(() => Stack(
         children: [
-          Obx(() => GoogleMap(
+          GoogleMap(
             mapType: MapType.hybrid,
             initialCameraPosition: controller.kGooglePlex,
             onMapCreated: (GoogleMapController googleMapController) {
@@ -40,15 +40,26 @@ class MapPage extends StatelessWidget {
             myLocationEnabled: true,
             myLocationButtonEnabled: true,
             markers: Set<Marker>.of(controller.markersCurrent),
-          )),
+          ),
           DraggaleScrollableSheetAddress(
             listAddress: controller.listAddress,
             onSelected: (address) => controller.goToTheAddress(address: address),
+            currentExtent: controller.currentExtent.value,
+            isExpanded: controller.isExpanded.value,
+            collapseSheet: () => {
+              controller.collapseSheet()
+            },
+            expandSheet: () => {
+              controller.expandSheet()
+            },
+            controller: controller.draggableScrollableController,
+            showTabClose: controller.showTabClose.value,
           ),
         ],
-      ),
+      )),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
+          controller.collapseSheet();
           controller.gotoMyLocation();
         },
         label: const Text('Vị trí của tôi'),
