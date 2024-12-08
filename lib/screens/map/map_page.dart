@@ -5,6 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tiktok_clone/gen/colors.dart';
 import 'package:tiktok_clone/screens/map/map_controller.dart';
 import 'package:tiktok_clone/style/text_style.dart';
+import 'package:tiktok_clone/utils/utils.dart';
 import 'package:tiktok_clone/widget/bottom_sheet/draggale_scrollable_sheet_address.dart';
 
 import '../../widget/divider/divider.dart';
@@ -16,7 +17,7 @@ class MapPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Obx(() => Scaffold(
       appBar: AppBar(
         title: const Text('Google Maps'),
         centerTitle: true,
@@ -29,7 +30,7 @@ class MapPage extends StatelessWidget {
         ),
         elevation: 10,
       ),
-      body: Obx(() => Stack(
+      body: Stack(
         children: [
           GoogleMap(
             mapType: MapType.hybrid,
@@ -40,6 +41,16 @@ class MapPage extends StatelessWidget {
             myLocationEnabled: true,
             myLocationButtonEnabled: true,
             markers: Set<Marker>.of(controller.markersCurrent),
+            polylines: {
+              Polyline(
+                polylineId: const PolylineId("route1"),
+                points: controller.routePoints,
+                color: ColorName.blue,
+                width: 5,
+                startCap: Cap.roundCap,
+                endCap: Cap.buttCap,
+              ),
+            },
           ),
           DraggaleScrollableSheetAddress(
             listAddress: controller.listAddress,
@@ -56,15 +67,15 @@ class MapPage extends StatelessWidget {
             showTabClose: controller.showTabClose.value,
           ),
         ],
-      )),
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           controller.collapseSheet();
           controller.gotoMyLocation();
         },
-        label: const Text('Vị trí của tôi'),
+        label: Text('Vị trí của tôi \n (${convertDistanceToString(controller.distance.value)})'),
         icon: const Icon(Icons.person_pin_circle_outlined),
       ),
-    );
+    ));
   }
 }

@@ -32,4 +32,7 @@ class ColorName {
 
   /// Color: #DADBDB
   static const Color colorDivider = Color(0xFFDADBDB);
+
+  /// Color: #0077FF
+  static const Color blue = Color(0xFF0077FF);
 }
