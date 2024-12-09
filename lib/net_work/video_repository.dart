@@ -10,7 +10,7 @@ class VideoRepository {
     try {
       final response = await _apiService.get(AppUrl.videos, queryParameters: {
         'alt': 'media',
-        'token': '631a5739-03f6-4836-9aa0-4a3d8681b2c0'
+        'token': 'fb384f71-8c84-45c4-ad96-d16830c07ee8'
       });
       final data = response.data as List;
       final videos = <VideoModel>[];
