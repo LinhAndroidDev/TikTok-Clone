@@ -111,4 +111,8 @@ extension AppNavigateScreen on AppNavigate {
   Future<T> gotoMapPage<T>() async {
     return await toNamed(AppRoute.map.rawValue);
   }
+
+  Future<T> gotoEditPhotoPage<T>({required String photoPath}) async {
+    return await toNamed(AppRoute.editPhoto.rawValue, arguments: photoPath);
+  }
 }

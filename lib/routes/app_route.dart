@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/screens/creative/creative_route.dart';
 import 'package:tiktok_clone/screens/discover/discover_route.dart';
+import 'package:tiktok_clone/screens/edit_photo/edit_photo_route.dart';
 import 'package:tiktok_clone/screens/edit_profile/edit_profile_route.dart';
 import 'package:tiktok_clone/screens/home/home_route.dart';
 import 'package:tiktok_clone/screens/inbox/inbox_route.dart';
@@ -27,7 +28,8 @@ enum AppRoute {
   message('/message'),
   editProfile('/edit_profile'),
   setting('/setting'),
-  map('/map');
+  map('/map'),
+  editPhoto('edit_photo');
 
   const AppRoute(this.rawValue);
 
@@ -62,6 +64,8 @@ enum AppRoute {
         return SettingRoute().createRoute(settings);
       case AppRoute.map:
         return MapRoute().createRoute(settings);
+      case AppRoute.editPhoto:
+        return EditPhotoRoute().createRoute(settings);
     }
   }
 

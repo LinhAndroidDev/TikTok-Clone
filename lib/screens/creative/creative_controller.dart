@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:tiktok_clone/routes/app_navigate.dart';
 
 import '../../widget/dialog/dialog_warning_fail_camera.dart';
 
@@ -75,6 +76,22 @@ class CreativeController extends GetxController with GetTickerProviderStateMixin
       print('Camera permission granted');
     } else {
       print('Camera permission denied');
+    }
+  }
+
+  Future<void> takePicture() async {
+    if (cameraController == null || !cameraController!.value.isInitialized) {
+      print("Camera not initialized");
+      return;
+    }
+
+    try {
+      final image = await cameraController?.takePicture();
+      print('Image captured: ${image?.path}');
+
+      AppNavigate.instance.gotoEditPhotoPage(photoPath: image!.path);
+    } catch (e) {
+      print('Error taking picture: $e');
     }
   }
 }

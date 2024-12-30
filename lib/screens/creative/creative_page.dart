@@ -139,7 +139,9 @@ class CreativePage extends StatelessWidget {
             )
           ],
         ),
-        Assets.images.icRecord.svg(width: 80, height: 80),
+        InkWell(
+          onTap: () => controller.takePicture(),
+            child: Assets.images.icRecord.svg(width: 80, height: 80)),
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
